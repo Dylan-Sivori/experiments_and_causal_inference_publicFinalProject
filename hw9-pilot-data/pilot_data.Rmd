@@ -1,0 +1,651 @@
+---
+title: "241 Pilot Data Scripting Workspace"
+output: html_document
+date: "2025-10-20"
+---
+
+```{r}
+library(knitr)
+library(ggplot2)
+```
+
+# encode states
+
+```{r}
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/US_map_1864_Civil_War_divisions.svg/1024px-US_map_1864_Civil_War_divisions.svg.png")
+```
+
+Blue indicates the Union states and light blue Union-supporting slave states ([border states](https://en.wikipedia.org/wiki/Border_states_(American_Civil_War) "Border states (American Civil War)")) that primarily stayed in Union control, though [Kentucky](https://en.wikipedia.org/wiki/Kentucky "Kentucky") and [Missouri](https://en.wikipedia.org/wiki/Missouri "Missouri") had dual competing Confederate and Unionist governments. Red represents seceded states in rebellion, also known as the Confederate States of America. Uncolored areas were territories, with the exception of the [Indian Territory](https://en.wikipedia.org/wiki/Indian_Territory "Indian Territory"), which is present-day [Oklahoma](https://en.wikipedia.org/wiki/Oklahoma "Oklahoma").
+
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Confederate_States_of_America#/media/File:US_map_1864_Civil_War_divisions.svg)
+
+## **Confederate States (Seceded, In Rebellion)**
+
+-   South Carolina
+
+-   Mississippi
+
+-   Florida
+
+-   Alabama
+
+-   Georgia
+
+-   Louisiana
+
+-   Texas
+
+-   Virginia
+
+-   Arkansas
+
+-   Tennessee
+
+-   North Carolina
+
+*Note*: Kentucky and Missouri had rival Confederate governments, were recognized by the Confederate Congress and added to the Confederate flag, but were largely under Union control and are typically classified as border states for rigorous, modern studies.
+
+```{r}
+c_states <- c(
+  "South Carolina",
+  "Mississippi",
+  "Florida",
+  "Alabama",
+  "Georgia",
+  "Louisiana",
+  "Texas",
+  "Virginia",
+  "Arkansas",
+  "Tennessee",
+  "North Carolina")
+print("Number of states in Confederacy")
+print(length(c_states))
+print("List of states in Confederacy")
+print(c_states)
+```
+
+## **Union States (Remained in the Union)**
+
+-   California
+
+-   Connecticut
+
+-   Illinois
+
+-   Indiana
+
+-   Iowa
+
+-   Kansas (admitted January 29, 1861)
+
+-   Maine
+
+-   Massachusetts
+
+-   Michigan
+
+-   Minnesota
+
+-   Nevada
+
+-   New Hampshire
+
+-   New Jersey
+
+-   New York
+
+-   Ohio
+
+-   Oregon
+
+-   Pennsylvania
+
+-   Rhode Island
+
+-   Vermont
+
+-   Wisconsin
+
+```{r}
+u_states <- c(
+  "California",
+  "Connecticut",
+  "Illinois",
+  "Indiana",
+  "Iowa",
+  "Kansas",
+  "Maine",
+  "Massachusetts",
+  "Michigan",
+  "Minnesota",
+#  "Nevada",
+  "New Hampshire",
+  "New Jersey",
+  "New York",
+  "Ohio",
+  "Oregon",
+  "Pennsylvania",
+  "Rhode Island",
+  "Vermont",
+  "Wisconsin"
+)
+print("Number of states in Union")
+print(length(u_states))
+print("List of states in Union")
+print(u_states)
+
+```
+
+## **Exclusion List: Union-Supporting Border States & Unorganized Territories**
+
+## **Union-Supporting Border States (Allowed Slavery, Primarily Under Union Control)**
+
+-   Delaware
+
+-   Kentucky (mostly under Union control, dual governments)
+
+-   Maryland
+
+-   Missouri (mostly under Union control, dual governments)
+
+-   West Virginia (formed in 1863 from western Virginia counties; Union state)
+
+## **Unorganized Territories During the Civil War**
+
+-   Colorado,
+
+-   Dakota,
+
+-   Nebraska,
+
+-   Nevada,
+
+-   New Mexico,
+
+-   Utah,
+
+-   Washington,
+
+-   Indian Territory (now Oklahoma)
+
+**Notes:**
+
+-   *West Virginia* did not exist in 1861; it broke away from Virginia in 1863.
+
+-   *Kansas* was only just admitted in January 1861, as a free state.
+
+-   *Nevada, Nebraska, Colorado, and all other Western states were still territories* in 1861.
+
+```{r}
+ex_b_states <- c(
+  "Delaware",
+  "Kentucky",
+  "Maryland",
+  "Missouri",
+  "West Virginia"
+)
+print("Number of Union-supporting border states")
+print(length(ex_b_states))
+print("List of Union-supporting border states")
+print(ex_b_states)
+```
+
+```{r}
+ex_u_states <- c(
+  "Colorado",
+  "North Dakota",
+  "South Dakota",
+  "Nebraska",
+  "Nevada",
+  "New Mexico",
+  "Utah",
+  "Washington",
+  "Oklahoma"
+)
+print("Number of unorganized territories during the Civil War")
+print(length(ex_u_states))
+print("List of unorganized territories during the Civil War")
+print(ex_u_states)
+```
+
+```{r}
+length(c_states) + length(u_states) + length(ex_b_states) + length(ex_u_states)
+```
+
+```{r}
+all_states <- list(c_states, u_states, ex_b_states, ex_u_states)
+flat_states <- unlist(all_states)
+
+# Find duplicated entries (reporting only the first duplication)
+dup_names <- flat_states[duplicated(flat_states)]
+
+print("Are any states double-listed?")
+print(any(duplicated(flat_states)))
+print("Duplicated state names (if any):")
+print(dup_names)
+
+```
+
+We therefore set our sample to clearly Union or Confederacy states, at the start of hostilities in 1861.
+
+# lists of municipalities
+
+```{r}
+# ?us.cities
+```
+
+## Database of US cities
+
+### Description
+
+This database is of us cities of population greater than about 40,000. Also included are state capitals of any population size.
+
+### Format
+
+A list with 6 components, namely "name", "country.etc", "pop", "lat", "long", and "capital", containing the city name, the state abbreviation, approximate population (as at January 2006), latitude, longitude and capital status indication (0 for non-capital, 1 for capital, 2 for state capital.
+
+```{r}
+# citation: AI generated code block
+# diagnostic: find the broken state
+library(maps)
+library(dplyr)
+data(us.cities)
+
+# check each state individually to find the mismatch
+for(i in 1:length(u_states)) {
+  state_position <- match(u_states[i], state.name)
+  if(is.na(state_position)) {
+    print(paste("State", i, "FAILED:", u_states[i]))
+  } else {
+    abbr <- state.abb[state_position]
+    print(paste("State", i, ":", u_states[i], "->", abbr))
+  }
+}
+
+# the problem is likely spacing or capitalization
+# check if it's a simple case issue
+u_states_trimmed <- trimws(u_states)  # remove any leading/trailing spaces
+problematic_index <- which(!u_states_trimmed %in% state.name)
+if(length(problematic_index) > 0) {
+  print(paste("Problem state at position", problematic_index, ":", u_states[problematic_index]))
+}
+
+# fix: create abbreviations with explicit NA handling
+u_states_abbr <- character(length(u_states))  # pre-allocate vector
+for(i in 1:length(u_states)) {
+  pos <- match(trimws(u_states[i]), state.name)
+  if(!is.na(pos)) {
+    u_states_abbr[i] <- state.abb[pos]
+  } else {
+    u_states_abbr[i] <- NA
+    print(paste("Could not convert:", u_states[i]))
+  }
+}
+
+# same for confederate
+c_states_abbr <- character(length(c_states))
+for(i in 1:length(c_states)) {
+  pos <- match(trimws(c_states[i]), state.name)
+  if(!is.na(pos)) {
+    c_states_abbr[i] <- state.abb[pos]
+  } else {
+    c_states_abbr[i] <- NA
+    print(paste("Could not convert:", c_states[i]))
+  }
+}
+
+# verify counts before filtering
+print(paste("Union states input:", length(u_states)))
+print(paste("Union abbreviations created:", sum(!is.na(u_states_abbr))))
+print(paste("Confederate states input:", length(c_states)))
+print(paste("Confederate abbreviations created:", sum(!is.na(c_states_abbr))))
+
+# filter cities - only use valid abbreviations
+union_cities <- us.cities[us.cities$country.etc %in% u_states_abbr[!is.na(u_states_abbr)], ]
+union_cities <- union_cities[order(union_cities$pop, decreasing = TRUE), ]
+
+confederate_cities <- us.cities[us.cities$country.etc %in% c_states_abbr[!is.na(c_states_abbr)], ]
+confederate_cities <- confederate_cities[order(confederate_cities$pop, decreasing = TRUE), ]
+
+# final validation
+print(paste("Union cities found:", nrow(union_cities)))
+print(paste("Confederate cities found:", nrow(confederate_cities)))
+print("Top 25 Union cities:")
+print(union_cities[1:25, c("name", "country.etc", "pop")])
+print("Top 25 Confederate cities:")
+print(confederate_cities[1:25, c("name", "country.etc", "pop")])
+```
+
+**Total cities available for sampling:**
+
+**Union:** 562 cities across 19 states
+
+**Confederate:** 261 cities across 11 states
+
+**Total:** 823 cities
+
+```{r}
+print(union_cities[1:25, ])  # All columns for the top 25 union cities
+
+```
+
+```{r}
+print(confederate_cities[1:25, ])  # All columns for the top 25 confederate cities
+
+```
+
+```{r}
+# Drop 'capital' column for both data frames
+union_cities_nocap <- subset(union_cities, select = -capital)
+confederate_cities_nocap <- subset(confederate_cities, select = -capital)
+
+```
+
+```{r}
+# Add 'group' column before combining
+union_cities_nocap$group <- "Union"
+confederate_cities_nocap$group <- "Confederate"
+
+# Bind rows, specifying correct column names
+all_cities <- rbind(
+  union_cities_nocap[, c("name", "country.etc", "pop", "lat", "long", "group")],
+  confederate_cities_nocap[, c("name", "country.etc", "pop", "lat", "long", "group")]
+)
+
+# Proceed to plot as before (update aes to use 'country.etc')
+library(ggplot2)
+library(maps)
+group_cols <- c("Confederate" = "gray50", "Union" = "blue")
+us_map <- map_data("state")
+
+ggplot() +
+  geom_polygon(data = us_map, aes(x = long, y = lat, group = group),
+               fill = "white", color = "black", size = 0.2) +
+  geom_point(data = all_cities,
+             aes(x = long, y = lat, color = group),
+             alpha = 0.5, size = 1) +
+  scale_color_manual(values = group_cols) +
+  coord_fixed(1.3) +
+  labs(
+    title = "Cities of Union and Confederate States (Civil War Era)",
+    x = "Longitude", y = "Latitude", color = "State group"
+  ) +
+  theme_minimal()
+
+```
+
+```{r}
+# double checking our sample is accurate
+include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/US_map_1864_Civil_War_divisions.svg/1024px-US_map_1864_Civil_War_divisions.svg.png")
+```
+
+Visual audit appears to confirm we've accurately obtained the names of cities and municipalities across these regions.
+
+```{r}
+
+# Combine data and prepare group variable (as before)
+union_cities_nocap$group <- "Union"
+confederate_cities_nocap$group <- "Confederate"
+all_cities <- rbind(
+  union_cities_nocap[, c("name", "country.etc", "pop", "lat", "long", "group")],
+  confederate_cities_nocap[, c("name", "country.etc", "pop", "lat", "long", "group")]
+)
+
+# Plot boxplots: by state, colored by group, facet by group
+ggplot(all_cities, aes(x = country.etc, y = pop, fill = group)) +
+  scale_y_continuous(labels = label_number_si())
+  geom_boxplot(outlier.size = 0.5, alpha = 0.6) +
+  facet_wrap(~ group, scales = "free_x") +
+  labs(
+    x = "State Abbreviation",
+    y = "City Population",
+    fill = "Group",a
+    title = "Boxplot Distribution of City Populations by State",
+    subtitle = "Faceted by Union and Confederacy"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+    legend.position = "none"
+  )
+```
+
+```{r}
+
+ggplot(all_cities, aes(x = long, y = lat)) +
+  geom_point(aes(size = pop, fill = group), shape = 21, color = "black", alpha = 0.7) +
+  scale_size_continuous(range = c(2, 10), breaks = pretty(all_cities$pop), labels = label_number(scale_cut = cut_si("M"))) +
+  coord_fixed() +
+  labs(
+    x = "Longitude",
+    y = "Latitude",
+    fill = "Group",
+    size = "City Population",
+    title = "Map of Cities by Population Size",
+    subtitle = "Point Size = Population, Colored by Group"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "right")
+```
+
+```{r}
+library(scales)
+
+ggplot(all_cities, aes(x = country.etc, y = pop, fill = group)) +
+  geom_boxplot(outlier.size = 0.5, alpha = 0.6) +
+  facet_wrap(~ group, scales = "free_x") +
+  scale_y_continuous(labels = label_number(scale_cut = cut_si("M"))) +  # <- this is the fix!
+  labs(
+    x = "State Abbreviation",
+    y = "City Population",
+    fill = "Group",
+    title = "Boxplot Distribution of City Populations by State",
+    subtitle = "Faceted by Union and Confederacy"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+    legend.position = "none"
+  )
+
+```
+
+```{r}
+ggplot(all_cities, aes(x = country.etc, y = pop, fill = group)) +
+  geom_boxplot(outlier.size = 0.5, alpha = 0.6) +
+  facet_wrap(~ group, scales = "free_x") +
+  scale_y_log10(labels = label_number(scale_cut = cut_si("M"))) +
+  labs(
+    x = "State Abbreviation",
+    y = "City Population (log scale)",
+    fill = "Group",
+    title = "Boxplot Distribution of City Populations by State (Log Scale)",
+    subtitle = "Faceted by Union and Confederacy"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+    legend.position = "none"
+  )
+
+```
+
+```{r}
+
+
+summary_table <- all_cities %>%
+  group_by(country.etc, group) %>%
+  summarise(
+    count = n(),
+    mean_pop = mean(pop, na.rm = TRUE),
+    median_pop = median(pop, na.rm = TRUE),
+    min_pop = min(pop, na.rm = TRUE),
+    max_pop = max(pop, na.rm = TRUE),
+    q25 = quantile(pop, 0.25, na.rm = TRUE),
+    q75 = quantile(pop, 0.75, na.rm = TRUE)
+  ) %>%
+  ungroup()
+
+print(summary_table)
+```
+
+```{r}
+# check population range
+union_pop_range <- range(union_cities$pop)
+confederate_pop_range <- range(confederate_cities$pop)
+
+print(paste("Union cities population range:", union_pop_range[1], "to", union_pop_range[2]))
+print(paste("Confederate cities population range:", confederate_pop_range[1], "to", confederate_pop_range[2]))
+
+# find cities under 40k (the limit stated in the us.cities documentation)
+small_union <- union_cities[union_cities$pop < 40000, ]
+small_confederate <- confederate_cities[confederate_cities$pop < 40000, ]
+
+print(paste("Union cities under 40k:", nrow(small_union)))
+small_union
+print(paste("Confederate cities under 40k:", nrow(small_confederate)))
+small_confederate
+
+hist(union_cities$pop, breaks=50, main="Union Cities Population Distribution")
+hist(confederate_cities$pop, breaks=50, main="Confederate Cities Population Distribution")
+```
+
+**t-tests for differences in means**
+
+```{r}
+state_means <- all_cities %>%
+  group_by(country.etc, group) %>%
+  summarise(mean_pop = mean(pop, na.rm = TRUE)) %>%
+  ungroup()
+
+union_means <- state_means %>% filter(group == "Union")
+confederate_means <- state_means %>% filter(group == "Confederate")
+
+t_test_result <- t.test(union_means$mean_pop, confederate_means$mean_pop)
+
+print(t_test_result)
+```
+
+Means:
+
+-   union states: avg city pop \approx 110,596
+
+-   confederate states: avg city pop \approx 115,839
+
+statistic:
+
+-   t = -0.2477, indicates little difference in groups
+
+-   degrees of freedom = 27.074
+
+-   p-value = 0.8062, meaning there is no statisticallys ignificant difference between the mean city populations of union and confederate states at the state level.
+
+-   95% CI: [-48,669, 38,183]
+
+# Assumption:
+
+We have pulled our list of cities from us.cities, a library that has a list of cities. We are not pulling all potential cities from all states\
+
+```{r}
+# Approach 5: Two-Stage Cluster Sampling
+# =======================================
+
+set.seed(42)  # Reproducibility
+
+n_per_group <- 400  # 800 total cities
+selected_cities <- data.frame()
+union_selected_indices <- c()
+confederate_selected_indices <- c()
+
+# Get state lists
+union_states <- unique(union_cities_nocap$country.etc)
+confederate_states <- unique(confederate_cities_nocap$country.etc)
+
+cycle <- 1
+max_cycles <- 50  # Safety limit
+
+while(nrow(selected_cities) < n_per_group * 2 & cycle <= max_cycles) {
+  
+  # Shuffle state order for this cycle (different each time)
+  set.seed(42 + cycle)
+  shuffled_union_states <- sample(union_states)
+  shuffled_confederate_states <- sample(confederate_states)
+  
+  # Alternate through states (up to min of both lists)
+  for(i in 1:min(length(shuffled_union_states), length(shuffled_confederate_states))) {
+    
+    # UNION city selection
+    u_state <- shuffled_union_states[i]
+    u_available <- union_cities_nocap %>%
+      filter(country.etc == u_state) %>%
+      filter(!row_number() %in% union_selected_indices)
+    
+    if(nrow(u_available) > 0) {
+      u_idx <- sample(1:nrow(u_available), 1)
+      u_city <- u_available[u_idx, ]
+      u_city$group <- "Union"
+      u_city$cycle <- cycle
+      selected_cities <- rbind(selected_cities, u_city)
+      union_selected_indices <- c(union_selected_indices, 
+                                   which(union_cities_nocap$name == u_city$name & 
+                                         union_cities_nocap$country.etc == u_city$country.etc)[1])
+    }
+    
+    # CONFEDERATE city selection
+    c_state <- shuffled_confederate_states[i]
+    c_available <- confederate_cities_nocap %>%
+      filter(country.etc == c_state) %>%
+      filter(!row_number() %in% confederate_selected_indices)
+    
+    if(nrow(c_available) > 0) {
+      c_idx <- sample(1:nrow(c_available), 1)
+      c_city <- c_available[c_idx, ]
+      c_city$group <- "Confederate"
+      c_city$cycle <- cycle
+      selected_cities <- rbind(selected_cities, c_city)
+      confederate_selected_indices <- c(confederate_selected_indices,
+                                         which(confederate_cities_nocap$name == c_city$name & 
+                                               confederate_cities_nocap$country.etc == c_city$country.etc)[1])
+    }
+    
+    # Stop if target reached
+    if(nrow(selected_cities) >= n_per_group * 2) break
+  }
+  
+  cycle <- cycle + 1
+}
+
+# Verify results
+cat("Total cities sampled:", nrow(selected_cities), "\n")
+cat("Union cities:", sum(selected_cities$group == "Union"), "\n")
+cat("Confederate cities:", sum(selected_cities$group == "Confederate"), "\n")
+cat("Number of cycles:", max(selected_cities$cycle), "\n")
+
+# Check state distribution
+table(selected_cities$country.etc, selected_cities$group)
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```

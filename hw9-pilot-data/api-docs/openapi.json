@@ -1,0 +1,1097 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API Docs",
+    "description": "",
+    "version": "0.1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.targetron.cloud"
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-API-KEY",
+        "description": "The API uses API keys (tokens) to authenticate requests. You can view and manage your API key on [the profile page](/profile).\n\nAuthentication to the API is performed via `X-API-KEY: YXV0aDB8NjhmNjgwMzgwZmFhYzg1NGU4MmZlN2NmfDFkNzE4ZjE0MzM` header inside each request.\n\nYour API keys carry various privileges, do not share them in public areas such as GitHub, client-side code, and so forth."
+      },
+      "APIKeyQueryParam": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "apiKey",
+        "description": "Alternatively, you can send the API key inside URL query parameters `apiKey=YXV0aDB8NjhmNjgwMzgwZmFhYzg1NGU4MmZlN2NmfDFkNzE4ZjE0MzM`. Although, this method less secure and recommended for testing purposes only."
+      }
+    },
+    "schemas": {
+      "parameters": {
+        "region": {
+          "in": "query",
+          "name": "cc",
+          "required": false,
+          "description": "The parameter specifies a two-letter country code (ISO 3166-1 alpha-2).",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "AF",
+              "AL",
+              "DZ",
+              "AS",
+              "AD",
+              "AO",
+              "AI",
+              "AG",
+              "AR",
+              "AM",
+              "AU",
+              "AT",
+              "AZ",
+              "BS",
+              "BH",
+              "BD",
+              "BY",
+              "BE",
+              "BZ",
+              "BJ",
+              "BT",
+              "BO",
+              "BA",
+              "BW",
+              "BR",
+              "VG",
+              "BN",
+              "BG",
+              "BF",
+              "BI",
+              "KH",
+              "CM",
+              "CA",
+              "CV",
+              "CF",
+              "TD",
+              "CL",
+              "CN",
+              "CO",
+              "CG",
+              "CD",
+              "CK",
+              "CR",
+              "CI",
+              "HR",
+              "CU",
+              "CY",
+              "CZ",
+              "DK",
+              "DJ",
+              "DM",
+              "DO",
+              "EC",
+              "EG",
+              "SV",
+              "EE",
+              "ET",
+              "FJ",
+              "FI",
+              "FR",
+              "GA",
+              "GM",
+              "GE",
+              "DE",
+              "GH",
+              "GI",
+              "GR",
+              "GL",
+              "GT",
+              "GG",
+              "GY",
+              "HT",
+              "HN",
+              "HK",
+              "HU",
+              "IS",
+              "IN",
+              "ID",
+              "IQ",
+              "IE",
+              "IM",
+              "IL",
+              "IT",
+              "JM",
+              "JP",
+              "JE",
+              "JO",
+              "KZ",
+              "KE",
+              "KI",
+              "KW",
+              "KG",
+              "LA",
+              "LV",
+              "LB",
+              "LS",
+              "LY",
+              "LI",
+              "LT",
+              "LU",
+              "MG",
+              "MW",
+              "MY",
+              "MV",
+              "ML",
+              "MT",
+              "MU",
+              "MX",
+              "FM",
+              "MD",
+              "MN",
+              "ME",
+              "MS",
+              "MA",
+              "MQ",
+              "MZ",
+              "MM",
+              "NA",
+              "NR",
+              "NP",
+              "NL",
+              "NZ",
+              "NI",
+              "NE",
+              "NG",
+              "NU",
+              "MK",
+              "NO",
+              "OM",
+              "PK",
+              "PS",
+              "PA",
+              "PG",
+              "PY",
+              "PE",
+              "PH",
+              "PN",
+              "PL",
+              "PT",
+              "PR",
+              "QA",
+              "RO",
+              "RU",
+              "RW",
+              "WS",
+              "SM",
+              "ST",
+              "SA",
+              "SN",
+              "RS",
+              "SC",
+              "SL",
+              "SG",
+              "SK",
+              "SI",
+              "SB",
+              "SO",
+              "ZA",
+              "KR",
+              "ES",
+              "LK",
+              "SH",
+              "VC",
+              "SR",
+              "SE",
+              "CH",
+              "TW",
+              "TJ",
+              "TZ",
+              "TH",
+              "TL",
+              "TG",
+              "TO",
+              "TT",
+              "TN",
+              "TR",
+              "TM",
+              "VI",
+              "UG",
+              "UA",
+              "AE",
+              "GB",
+              "US",
+              "UY",
+              "UZ",
+              "VU",
+              "VE",
+              "VN",
+              "ZM",
+              "ZW"
+            ]
+          }
+        },
+        "skip": {
+          "in": "query",
+          "name": "skip",
+          "required": false,
+          "description": "The parameter specifies the number of items to skip. It's commonly used in pagination.",
+          "schema": {
+            "type": "integer",
+            "default": 0
+          }
+        },
+        "limit": {
+          "in": "query",
+          "name": "limit",
+          "required": false,
+          "description": "The parameter specifies the limit of items to return (1-100).",
+          "schema": {
+            "type": "integer",
+            "default": 25
+          }
+        },
+        "state": {
+          "in": "query",
+          "name": "state",
+          "required": false,
+          "description": "The parameter specifies a state or multiple states (e.g., `state=CA&state=NY`).",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "city": {
+          "in": "query",
+          "name": "city",
+          "required": false,
+          "description": "The parameter specifies a city or multiple cities (e.g., `city=los%20angeles&city=san diego`).",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "type": {
+          "in": "query",
+          "name": "type",
+          "required": false,
+          "description": "The parameter specifies a business category or multiple categories (e.g., `type=restaurant&type=bar`).",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "postalCode": {
+          "in": "query",
+          "name": "postalCode",
+          "required": false,
+          "description": "The parameter specifies a postal code or multiple postal codes (e.g., `postalCode=943&postalCode=944`).",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "name": {
+          "in": "query",
+          "name": "name",
+          "required": false,
+          "description": "The parameter specifies a business name (e.g., `name=starbucks`).",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "emailAndPhone": {
+          "in": "query",
+          "name": "emailAndPhone",
+          "required": false,
+          "description": "The parameter specifies the contact details combination. Choose one of the following options:\n- `with_email`: Filter results with email addresses.\n- `without_email`: Filter results without email addresses.\n- `with_phone`: Filter results with phone numbers.\n- `without_phone`: Filter results without phone numbers.\n- `enter_phone`: Allow the user to enter a phone number.\n- `email_and_phone`: Filter results with both email addresses and phone numbers.\n- `email_or_phone`: Filter results with either an email address or a phone number.\n\n(e.g., `emailAndPhone=without_email` , `emailAndPhone=email_and_phone`)",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "with_email",
+              "without_email",
+              "with_phone",
+              "without_phone",
+              "enter_phone",
+              "email_and_phone",
+              "email_or_phone"
+            ]
+          }
+        },
+        "site": {
+          "in": "query",
+          "name": "site",
+          "required": false,
+          "description": "The parameter specifies a domain name. Use `true` or `false` to return the places with (`site=true`) or without (`site=false`) a website. Alternatively, you can use a domain name (e.g., `site=starbucks.com`).",
+          "schema": {
+            "type": "string"
+          }
+        },
+        "addedFrom": {
+          "in": "query",
+          "name": "addedFrom",
+          "required": false,
+          "description": "The parameter sets the earliest timestamp for fetching records, making it easy to identify and retrieve recently started companies or new additions.",
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "addedTo": {
+          "in": "query",
+          "name": "addedTo",
+          "required": false,
+          "description": "The parameter sets the latest timestamp for fetching records, allowing you to get records added up to a specific time.",
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "businessStatus": {
+          "in": "query",
+          "name": "businessStatus",
+          "required": false,
+          "description": "The parameter specifies the status of the business. Choose one of the following options:\n- `operational`: The business is operational.\n- `closed_temporarily`: The business is temporarily closed.\n- `closed_permanently`: The business is permanently closed.\n- Mixed `closed_temporarily%2Coperational`: The business has a mixed status.\n- `Operational + Temporarily closed`: The business is operational but temporarily closed in some cases.\n\n(e.g., `businessStatus=closed_temporarily`)",
+          "schema": {
+            "type": "string",
+            "enum": [
+              "operational",
+              "closed_temporarily",
+              "closed_permanently",
+              "closed_temporarily%2Coperational"
+            ]
+          }
+        },
+        "companyType": {
+          "in": "query",
+          "name": "public",
+          "required": false,
+          "description": "The parameter specifies the type of company.\n\n(e.g., `public=true` for a public company or `public=false` for a private company).",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "physicalLocation": {
+          "in": "query",
+          "name": "area",
+          "required": false,
+          "description": "The parameter specifies if the business has a physical location (e.g., `area=true` or `area=false`).",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "verified": {
+          "in": "query",
+          "name": "verified",
+          "required": false,
+          "description": "The parameter specifies if the business is verified (e.g., `verified=true` or `verified=false`).",
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "attributes": {
+          "in": "query",
+          "name": "att",
+          "required": false,
+          "description": "The parameter allows filtering businesses by specific attributes. The available options depend on the selected category. For example, if the category is 'Service options', you can filter by attributes such as:\n- `Dine-in`\n- `Delivery`\n- `Outdoor seating`\n- `Takeout`. \n\n(e.g., `att=Service%20options.Delivery`) The attributes can only be selected if the corresponding category is chosen first.",
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "responses": {
+        "401": {
+          "description": "Wrong or missing API Key (token).",
+          "content": {
+            "application/json": {
+              "example": {
+                "error": true,
+                "errorMessage": "401 Unauthorized: The server could not verify that you are authorized to access the URL requested. You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required."
+              }
+            }
+          }
+        },
+        "402": {
+          "description": "Not enough credits.",
+          "content": {
+            "application/json": {
+              "example": {
+                "error": true,
+                "errorMessage": "Please add credits into your account balance or close past-due invoices."
+              }
+            }
+          }
+        },
+        "422": {
+          "description": "Wrong query url parameters.",
+          "content": {
+            "application/json": {
+              "example": {
+                "error": true,
+                "errorMessage": "422 Unprocessable Entity: The request was well-formed but was unable to be followed due to semantic errors."
+              }
+            }
+          }
+        }
+      },
+      "results": {
+        "description": {
+          "common": "The response contains the `status` of the response and the `data` array."
+        },
+        "places": {
+          "status": "Success",
+          "data": [
+            {
+              "display_name": "Petty Cash Taqueria & Bar",
+              "types": [
+                "Mexican Restaurant",
+                "Bar",
+                "Restaurant",
+                "Tex-Mex Restaurant"
+              ],
+              "type": "Mexican Restaurant",
+              "phone": "13239335300",
+              "phone_type": "Fixed Line",
+              "site": "http://pettycashtaqueria.com/",
+              "email_1": "press@pettycashtaqueria.com",
+              "email_1_title": null,
+              "email_1_full_name": null,
+              "email_2": "info@pettycashtaqueria.com",
+              "email_2_title": null,
+              "email_2_full_name": null,
+              "email_3": "events@pettycashtaqueria.com",
+              "email_3_title": null,
+              "email_3_full_name": null,
+              "linkedin": null,
+              "facebook": "https://www.facebook.com/PettyCashTaqueria",
+              "twitter": "https://twitter.com/pettycashla",
+              "instagram": "https://instagram.com/pettycashla",
+              "country_code": "US",
+              "state": "CA",
+              "city": "Los Angeles",
+              "county": "Fairfax",
+              "street": "7360 Beverly Blvd",
+              "postal_code": "90036",
+              "address": "7360 Beverly Blvd, Los Angeles, CA 90036",
+              "latitude": 34.0758817,
+              "longitude": -118.3503298,
+              "photo": "https://lh5.googleusercontent.com/p/AF1QipNM6EQ5tMEJiKFRUydCK8UE2Y4bSPUa7JaUspE5=w800-h500-k-no",
+              "photos_count": 425,
+              "rating": 4.3,
+              "rating_history": [
+                "4.3 (Mar-2022)",
+                "4.3 (Apr-2022)",
+                "4.3 (May-2022)",
+                "4.3 (Jun-2022)",
+                "4.3 (Jul-2022)"
+              ],
+              "reviews": 498,
+              "range": "$$",
+              "business_status": "Operational",
+              "business_status_history": [
+                "Operational (Mar-2022)",
+                "Operational (Apr-2022)",
+                "Operational (May-2022)",
+                "Operational (Jun-2022)",
+                "Operational (Jul-2022)"
+              ],
+              "booking_appointment_link": "https://www.opentable.com/restaurant/profile/114535?ref=1068",
+              "menu_link": null,
+              "verified": true,
+              "owner_title": "Petty Cash Taqueria & Bar",
+              "located_in": null,
+              "os_id": "719b79050f902a2b8c2b553d149a14cc",
+              "gmb_id": "0x80c2b9296b6cf69b:0x8d4aa54798e9aad7",
+              "located_os_id": null,
+              "working_hours": {
+                "Monday": "Closed",
+                "Tuesday": "5:30-9PM",
+                "Wednesday": "5:30-9PM",
+                "Thursday": "5:30-9PM",
+                "Friday": "5:30-10PM",
+                "Saturday": "5:30-10PM",
+                "Sunday": "Closed"
+              }
+            },
+            {
+              "display_name": "Far Bar",
+              "types": [
+                "Gastropub",
+                "Asian Fusion Restaurant",
+                "Bar",
+                "Cocktail Bar",
+                "Japanese Restaurant",
+                "Lounge",
+                "Restaurant",
+                "Seafood Restaurant",
+                "Sushi Restaurant"
+              ],
+              "type": "Gastropub",
+              "phone": "12136179990",
+              "phone_type": "Fixed Line",
+              "site": "http://farbarla.com/",
+              "email_1": "andrea@farbarla.com",
+              "email_1_title": null,
+              "email_1_full_name": null,
+              "email_2": "jesse@farbarla.com",
+              "email_2_title": null,
+              "email_2_full_name": null,
+              "email_3": "contact@farbarla.com",
+              "email_3_title": null,
+              "email_3_full_name": null,
+              "linkedin": "http://linkedin.com/company/far-bar-llc",
+              "facebook": "https://www.facebook.com/FarBarLittleTokyo/",
+              "twitter": "https://twitter.com/farbartweets",
+              "instagram": "http://instagram.com/farbar_la",
+              "country_code": "US",
+              "state": "CA",
+              "city": "Los Angeles",
+              "county": "Little Tokyo",
+              "street": "347 E 1St St",
+              "postal_code": "90012",
+              "address": "347 1st St, Los Angeles, CA 90012",
+              "latitude": 34.04974869999999,
+              "longitude": -118.2394595,
+              "photo": "https://lh5.googleusercontent.com/p/AF1QipO-g-fyTjxViX91ZrOdjmwqZquHJY3NPxBr3nZW=w800-h500-k-no",
+              "photos_count": 706,
+              "rating": 4.4,
+              "rating_history": [
+                "4.4 (Apr-2022)",
+                "4.4 (May-2022)",
+                "4.4 (Jun-2022)",
+                "4.4 (Jul-2022)",
+                "4.4 (Aug-2022)"
+              ],
+              "reviews": 1216,
+              "range": "$$",
+              "business_status": "Operational",
+              "business_status_history": [
+                "Operational (Apr-2022)",
+                "Operational (May-2022)",
+                "Operational (Jun-2022)",
+                "Operational (Jul-2022)",
+                "Operational (Aug-2022)"
+              ],
+              "booking_appointment_link": "https://www.ubereats.com/los-angeles/food-delivery/far-bar/m2bdgxyts9wfp84qay4ykg/?utm_source=google&utm_medium=organic&utm_campaign=place-action-link",
+              "menu_link": "http://places.singleplatform.com/far-bar/menu?ref=google",
+              "verified": true,
+              "owner_title": "Far Bar",
+              "located_in": null,
+              "os_id": "eb858f3a7fc073327703cc562a295f08",
+              "gmb_id": "0x80c2c647eb207b7b:0x52d0b49417c487ad",
+              "located_os_id": null,
+              "working_hours": {
+                "Monday": "11AM-2AM",
+                "Tuesday": "11AM-2AM",
+                "Wednesday": "11AM-2AM",
+                "Thursday": "11AM-2AM",
+                "Friday": "11AM-2AM",
+                "Saturday": "10AM-2AM",
+                "Sunday": "10AM-2AM"
+              }
+            },
+            {
+              "display_name": "Aslan Mediterranean",
+              "types": [
+                "Mediterranean Restaurant",
+                "Armenian Restaurant",
+                "Caterer",
+                "Greek Restaurant",
+                "Health Food Restaurant",
+                "Lebanese Restaurant",
+                "Middle Eastern Restaurant",
+                "Restaurant",
+                "Vegetarian Restaurant"
+              ],
+              "type": "Mediterranean Restaurant",
+              "phone": "13232562621",
+              "phone_type": "Fixed Line",
+              "site": "http://www.aslancatering.com/",
+              "email_1": "info@aslan.la",
+              "email_1_title": null,
+              "email_1_full_name": null,
+              "email_2": null,
+              "email_2_title": null,
+              "email_2_full_name": null,
+              "email_3": null,
+              "email_3_title": null,
+              "email_3_full_name": null,
+              "linkedin": null,
+              "facebook": "https://www.facebook.com/AslanCatering/",
+              "twitter": null,
+              "instagram": "https://www.instagram.com/aslan.med.cuisine",
+              "country_code": "US",
+              "state": "CA",
+              "city": "Los Angeles",
+              "county": "Eagle Rock",
+              "street": "2128 Colorado Blvd",
+              "postal_code": "90041",
+              "address": "2128 Colorado Blvd, Los Angeles, CA 90041",
+              "latitude": 34.1388852,
+              "longitude": -118.2129366,
+              "photo": "https://lh5.googleusercontent.com/p/AF1QipMEs_7kdyi3m6kk43FkZ_G0UioCmI_H0SykFH0u=w800-h500-k-no",
+              "photos_count": 60,
+              "rating": 4.4,
+              "rating_history": [
+                "4.4 (Mar-2022)",
+                "4.4 (Apr-2022)",
+                "4.4 (Jun-2022)",
+                "4.4 (Jul-2022)",
+                "4.4 (Aug-2022)"
+              ],
+              "reviews": 96,
+              "range": "$$",
+              "business_status": "Operational",
+              "business_status_history": [
+                "Operational (Mar-2022)",
+                "Operational (Apr-2022)",
+                "Operational (Jun-2022)",
+                "Operational (Jul-2022)",
+                "Operational (Aug-2022)"
+              ],
+              "booking_appointment_link": "https://www.ubereats.com/los-angeles/food-delivery/aslan/d9xf9ns8simuslymyv4g0q/?utm_source=google&utm_medium=organic&utm_campaign=place-action-link",
+              "menu_link": "https://aslan.la/aslans-menu",
+              "verified": true,
+              "owner_title": "Aslan Mediterranean",
+              "located_in": null,
+              "os_id": "d7dce3e15898168ee30646bd185e1e64",
+              "gmb_id": "0x80c2c011f132e94f:0xa1e8021297ebb8",
+              "located_os_id": null,
+              "working_hours": {
+                "Monday": "11AM-9PM",
+                "Tuesday": "11AM-9PM",
+                "Wednesday": "11AM-9PM",
+                "Thursday": "11AM-9PM",
+                "Friday": "11AM-9PM",
+                "Saturday": "11AM-9PM",
+                "Sunday": "Closed"
+              }
+            }
+          ]
+        },
+        "places_estimate": {
+          "status": "Success",
+          "total": 3846
+        },
+        "places_estimate_description": "The response contains the `status` of the response and estimated amount of results (`total`) that can be fetched with `/data/places` endpoint."
+      }
+    }
+  },
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/data/places": {
+      "get": {
+        "summary": "Places Data",
+        "description": "Returns full information about local businesses (places) and their contacts.",
+        "tags": [
+          "Local Business Directory",
+          "Places"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/schemas/parameters/type"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/region"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/state"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/city"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/postalCode"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/name"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/emailAndPhone"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/site"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/addedFrom"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/addedTo"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/businessStatus"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/companyType"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/physicalLocation"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/verified"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/attributes"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/skip"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/limit"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response contains the `status` of the response and the `data` array.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "Success",
+                  "data": [
+                    {
+                      "display_name": "Petty Cash Taqueria & Bar",
+                      "types": [
+                        "Mexican Restaurant",
+                        "Bar",
+                        "Restaurant",
+                        "Tex-Mex Restaurant"
+                      ],
+                      "type": "Mexican Restaurant",
+                      "phone": "13239335300",
+                      "phone_type": "Fixed Line",
+                      "site": "http://pettycashtaqueria.com/",
+                      "email_1": "press@pettycashtaqueria.com",
+                      "email_1_title": null,
+                      "email_1_full_name": null,
+                      "email_2": "info@pettycashtaqueria.com",
+                      "email_2_title": null,
+                      "email_2_full_name": null,
+                      "email_3": "events@pettycashtaqueria.com",
+                      "email_3_title": null,
+                      "email_3_full_name": null,
+                      "linkedin": null,
+                      "facebook": "https://www.facebook.com/PettyCashTaqueria",
+                      "twitter": "https://twitter.com/pettycashla",
+                      "instagram": "https://instagram.com/pettycashla",
+                      "country_code": "US",
+                      "state": "CA",
+                      "city": "Los Angeles",
+                      "county": "Fairfax",
+                      "street": "7360 Beverly Blvd",
+                      "postal_code": "90036",
+                      "address": "7360 Beverly Blvd, Los Angeles, CA 90036",
+                      "latitude": 34.0758817,
+                      "longitude": -118.3503298,
+                      "photo": "https://lh5.googleusercontent.com/p/AF1QipNM6EQ5tMEJiKFRUydCK8UE2Y4bSPUa7JaUspE5=w800-h500-k-no",
+                      "photos_count": 425,
+                      "rating": 4.3,
+                      "rating_history": [
+                        "4.3 (Mar-2022)",
+                        "4.3 (Apr-2022)",
+                        "4.3 (May-2022)",
+                        "4.3 (Jun-2022)",
+                        "4.3 (Jul-2022)"
+                      ],
+                      "reviews": 498,
+                      "range": "$$",
+                      "business_status": "Operational",
+                      "business_status_history": [
+                        "Operational (Mar-2022)",
+                        "Operational (Apr-2022)",
+                        "Operational (May-2022)",
+                        "Operational (Jun-2022)",
+                        "Operational (Jul-2022)"
+                      ],
+                      "booking_appointment_link": "https://www.opentable.com/restaurant/profile/114535?ref=1068",
+                      "menu_link": null,
+                      "verified": true,
+                      "owner_title": "Petty Cash Taqueria & Bar",
+                      "located_in": null,
+                      "os_id": "719b79050f902a2b8c2b553d149a14cc",
+                      "gmb_id": "0x80c2b9296b6cf69b:0x8d4aa54798e9aad7",
+                      "located_os_id": null,
+                      "working_hours": {
+                        "Monday": "Closed",
+                        "Tuesday": "5:30-9PM",
+                        "Wednesday": "5:30-9PM",
+                        "Thursday": "5:30-9PM",
+                        "Friday": "5:30-10PM",
+                        "Saturday": "5:30-10PM",
+                        "Sunday": "Closed"
+                      }
+                    },
+                    {
+                      "display_name": "Far Bar",
+                      "types": [
+                        "Gastropub",
+                        "Asian Fusion Restaurant",
+                        "Bar",
+                        "Cocktail Bar",
+                        "Japanese Restaurant",
+                        "Lounge",
+                        "Restaurant",
+                        "Seafood Restaurant",
+                        "Sushi Restaurant"
+                      ],
+                      "type": "Gastropub",
+                      "phone": "12136179990",
+                      "phone_type": "Fixed Line",
+                      "site": "http://farbarla.com/",
+                      "email_1": "andrea@farbarla.com",
+                      "email_1_title": null,
+                      "email_1_full_name": null,
+                      "email_2": "jesse@farbarla.com",
+                      "email_2_title": null,
+                      "email_2_full_name": null,
+                      "email_3": "contact@farbarla.com",
+                      "email_3_title": null,
+                      "email_3_full_name": null,
+                      "linkedin": "http://linkedin.com/company/far-bar-llc",
+                      "facebook": "https://www.facebook.com/FarBarLittleTokyo/",
+                      "twitter": "https://twitter.com/farbartweets",
+                      "instagram": "http://instagram.com/farbar_la",
+                      "country_code": "US",
+                      "state": "CA",
+                      "city": "Los Angeles",
+                      "county": "Little Tokyo",
+                      "street": "347 E 1St St",
+                      "postal_code": "90012",
+                      "address": "347 1st St, Los Angeles, CA 90012",
+                      "latitude": 34.04974869999999,
+                      "longitude": -118.2394595,
+                      "photo": "https://lh5.googleusercontent.com/p/AF1QipO-g-fyTjxViX91ZrOdjmwqZquHJY3NPxBr3nZW=w800-h500-k-no",
+                      "photos_count": 706,
+                      "rating": 4.4,
+                      "rating_history": [
+                        "4.4 (Apr-2022)",
+                        "4.4 (May-2022)",
+                        "4.4 (Jun-2022)",
+                        "4.4 (Jul-2022)",
+                        "4.4 (Aug-2022)"
+                      ],
+                      "reviews": 1216,
+                      "range": "$$",
+                      "business_status": "Operational",
+                      "business_status_history": [
+                        "Operational (Apr-2022)",
+                        "Operational (May-2022)",
+                        "Operational (Jun-2022)",
+                        "Operational (Jul-2022)",
+                        "Operational (Aug-2022)"
+                      ],
+                      "booking_appointment_link": "https://www.ubereats.com/los-angeles/food-delivery/far-bar/m2bdgxyts9wfp84qay4ykg/?utm_source=google&utm_medium=organic&utm_campaign=place-action-link",
+                      "menu_link": "http://places.singleplatform.com/far-bar/menu?ref=google",
+                      "verified": true,
+                      "owner_title": "Far Bar",
+                      "located_in": null,
+                      "os_id": "eb858f3a7fc073327703cc562a295f08",
+                      "gmb_id": "0x80c2c647eb207b7b:0x52d0b49417c487ad",
+                      "located_os_id": null,
+                      "working_hours": {
+                        "Monday": "11AM-2AM",
+                        "Tuesday": "11AM-2AM",
+                        "Wednesday": "11AM-2AM",
+                        "Thursday": "11AM-2AM",
+                        "Friday": "11AM-2AM",
+                        "Saturday": "10AM-2AM",
+                        "Sunday": "10AM-2AM"
+                      }
+                    },
+                    {
+                      "display_name": "Aslan Mediterranean",
+                      "types": [
+                        "Mediterranean Restaurant",
+                        "Armenian Restaurant",
+                        "Caterer",
+                        "Greek Restaurant",
+                        "Health Food Restaurant",
+                        "Lebanese Restaurant",
+                        "Middle Eastern Restaurant",
+                        "Restaurant",
+                        "Vegetarian Restaurant"
+                      ],
+                      "type": "Mediterranean Restaurant",
+                      "phone": "13232562621",
+                      "phone_type": "Fixed Line",
+                      "site": "http://www.aslancatering.com/",
+                      "email_1": "info@aslan.la",
+                      "email_1_title": null,
+                      "email_1_full_name": null,
+                      "email_2": null,
+                      "email_2_title": null,
+                      "email_2_full_name": null,
+                      "email_3": null,
+                      "email_3_title": null,
+                      "email_3_full_name": null,
+                      "linkedin": null,
+                      "facebook": "https://www.facebook.com/AslanCatering/",
+                      "twitter": null,
+                      "instagram": "https://www.instagram.com/aslan.med.cuisine",
+                      "country_code": "US",
+                      "state": "CA",
+                      "city": "Los Angeles",
+                      "county": "Eagle Rock",
+                      "street": "2128 Colorado Blvd",
+                      "postal_code": "90041",
+                      "address": "2128 Colorado Blvd, Los Angeles, CA 90041",
+                      "latitude": 34.1388852,
+                      "longitude": -118.2129366,
+                      "photo": "https://lh5.googleusercontent.com/p/AF1QipMEs_7kdyi3m6kk43FkZ_G0UioCmI_H0SykFH0u=w800-h500-k-no",
+                      "photos_count": 60,
+                      "rating": 4.4,
+                      "rating_history": [
+                        "4.4 (Mar-2022)",
+                        "4.4 (Apr-2022)",
+                        "4.4 (Jun-2022)",
+                        "4.4 (Jul-2022)",
+                        "4.4 (Aug-2022)"
+                      ],
+                      "reviews": 96,
+                      "range": "$$",
+                      "business_status": "Operational",
+                      "business_status_history": [
+                        "Operational (Mar-2022)",
+                        "Operational (Apr-2022)",
+                        "Operational (Jun-2022)",
+                        "Operational (Jul-2022)",
+                        "Operational (Aug-2022)"
+                      ],
+                      "booking_appointment_link": "https://www.ubereats.com/los-angeles/food-delivery/aslan/d9xf9ns8simuslymyv4g0q/?utm_source=google&utm_medium=organic&utm_campaign=place-action-link",
+                      "menu_link": "https://aslan.la/aslans-menu",
+                      "verified": true,
+                      "owner_title": "Aslan Mediterranean",
+                      "located_in": null,
+                      "os_id": "d7dce3e15898168ee30646bd185e1e64",
+                      "gmb_id": "0x80c2c011f132e94f:0xa1e8021297ebb8",
+                      "located_os_id": null,
+                      "working_hours": {
+                        "Monday": "11AM-9PM",
+                        "Tuesday": "11AM-9PM",
+                        "Wednesday": "11AM-9PM",
+                        "Thursday": "11AM-9PM",
+                        "Friday": "11AM-9PM",
+                        "Saturday": "11AM-9PM",
+                        "Sunday": "Closed"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/schemas/responses/401"
+          },
+          "402": {
+            "$ref": "#/components/schemas/responses/402"
+          },
+          "422": {
+            "$ref": "#/components/schemas/responses/422"
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X GET \"https://api.targetron.cloud/data/places?cc=US&city=los%20angeles&state=CA&type=restaurant&limit=3\" -H  \"X-API-KEY: YXV0aDB8NjhmNjgwMzgwZmFhYzg1NGU4MmZlN2NmfDFkNzE4ZjE0MzM\""
+          },
+          {
+            "lang": "Python",
+            "source": "import requests\n\nresponse = requests.get('https://api.targetron.cloud/data/places', params={'cc': 'US', 'city': 'los angeles', 'state': 'CA', 'type': 'restaurant', 'limit': '3'}, headers={'X-API-KEY': 'YXV0aDB8NjhmNjgwMzgwZmFhYzg1NGU4MmZlN2NmfDFkNzE4ZjE0MzM'})"
+          },
+          {
+            "lang": "Node.js",
+            "source": "import axios from 'axios';\n\nconst response = await axios.get('https://api.targetron.cloud/data/places', { params: { 'cc': 'US', 'city': 'los angeles', 'state': 'CA', 'type': 'restaurant', 'limit': 3 }, headers: { 'X-API-KEY': 'YXV0aDB8NjhmNjgwMzgwZmFhYzg1NGU4MmZlN2NmfDFkNzE4ZjE0MzM' }});"
+          }
+        ]
+      }
+    },
+    "/estimate/places": {
+      "get": {
+        "summary": "Places Estimate",
+        "description": "Returns estimated number of local businesses (places) that can be fetched with `/data/places` endpoint.",
+        "tags": [
+          "Local Business Directory",
+          "Places"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/schemas/parameters/type"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/region"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/state"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/city"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/postalCode"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/name"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/emailAndPhone"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/site"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/addedFrom"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/addedTo"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/businessStatus"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/companyType"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/physicalLocation"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/verified"
+          },
+          {
+            "$ref": "#/components/schemas/parameters/attributes"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The response contains the `status` of the response and estimated amount of results (`total`) that can be fetched with `/data/places` endpoint.",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": "Success",
+                  "total": 3846
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/schemas/responses/401"
+          },
+          "402": {
+            "$ref": "#/components/schemas/responses/402"
+          },
+          "422": {
+            "$ref": "#/components/schemas/responses/422"
+          }
+        },
+        "x-codeSamples": [
+          {
+            "lang": "cURL",
+            "source": "curl -X GET \"https://api.targetron.cloud/estimate/places?cc=US&city=los%20angeles&state=CA&type=restaurant\" -H  \"X-API-KEY: YXV0aDB8NjhmNjgwMzgwZmFhYzg1NGU4MmZlN2NmfDFkNzE4ZjE0MzM\""
+          },
+          {
+            "lang": "Python",
+            "source": "import requests\n\nresponse = requests.get('https://api.targetron.cloud/estimate/places', params={'cc': 'US', 'city': 'los angeles', 'state': 'CA', 'type': 'restaurant'}, headers={'X-API-KEY': 'YXV0aDB8NjhmNjgwMzgwZmFhYzg1NGU4MmZlN2NmfDFkNzE4ZjE0MzM'})"
+          },
+          {
+            "lang": "Node.js",
+            "source": "import axios from 'axios';\n\nconst response = await axios.get('https://api.targetron.cloud/estimate/places', { params: { 'cc': 'US', 'city': 'los angeles', 'state': 'CA', 'type': 'restaurant' }, headers: { 'X-API-KEY': 'YXV0aDB8NjhmNjgwMzgwZmFhYzg1NGU4MmZlN2NmfDFkNzE4ZjE0MzM' }});"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,801 @@
+"name","country.etc","pop","lat","long","group","cycle"
+"Topeka KS","KS",121229,39.04,-95.69,"Union",1
+"Hoover AL","AL",67576,33.38,-86.82,"Confederate",1
+"Green Bay WI","WI",100616,44.52,-87.99,"Union",1
+"Cary NC","NC",106117,35.78,-78.8,"Confederate",1
+"Altoona PA","PA",46442,40.51,-78.4,"Union",1
+"Monroe LA","LA",51292,32.51,-92.08,"Confederate",1
+"Taylor MI","MI",64874,42.23,-83.27,"Union",1
+"East Lake FL","FL",47720,27.98,-82.38,"Confederate",1
+"La Mirada CA","CA",50598,33.9,-118.01,"Union",1
+"Conway AR","AR",53297,35.09,-92.45,"Confederate",1
+"Fairfield CT","CT",59352,41.13,-73.26,"Union",1
+"Columbia SC","SC",118020,34.04,-80.89,"Confederate",1
+"Gresham OR","OR",100674,45.5,-122.44,"Union",1
+"Valdosta GA","GA",45909,30.85,-83.28,"Confederate",1
+"Portland ME","ME",62882,43.66,-70.28,"Union",1
+"Chattanooga TN","TN",153617,35.07,-85.26,"Confederate",1
+"Montpelier VT","VT",8003,44.26,-72.57,"Union",1
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",1
+"Kettering OH","OH",55473,39.7,-84.15,"Union",1
+"Lynchburg VA","VA",65485,37.4,-79.19,"Confederate",1
+"Plainfield NJ","NJ",47769,40.62,-74.42,"Union",1
+"Abilene TX","TX",113888,32.45,-99.74,"Confederate",1
+"East Providence RI","RI",50750,41.8,-71.36,"Union",1
+"El Paso TX","TX",603545,31.85,-106.44,"Confederate",2
+"Revere MA","MA",46259,42.42,-70.99,"Union",1
+"Bartlett TN","TN",43852,35.22,-89.84,"Confederate",2
+"Mishawaka IN","IN",49534,41.67,-86.17,"Union",1
+"Mount Pleasant SC","SC",61690,32.82,-79.86,"Confederate",2
+"Freeport NY","NY",43377,40.65,-73.58,"Union",1
+"Virginia Beach VA","VA",453884,36.74,-76.04,"Confederate",2
+"Salem NH","NH",42859,42.53,-70.87,"Union",1
+"Charlotte NC","NC",607111,35.2,-80.83,"Confederate",2
+"Cicero IL","IL",80414,41.84,-87.76,"Union",1
+"Little Rock AR","AR",184323,34.72,-92.35,"Confederate",2
+"Sioux City IA","IA",82863,42.5,-96.39,"Union",1
+"Lafayette LA","LA",112317,30.22,-92.03,"Confederate",2
+"Saint Louis Park MN","MN",44032,44.95,-93.36,"Union",1
+"Sandy Springs GA","GA",96496,33.94,-84.37,"Confederate",2
+"Manchester NH","NH",110384,42.98,-71.44,"Union",2
+"Huntsville AL","AL",169155,34.71,-86.63,"Confederate",2
+"Plymouth MN","MN",73505,45.02,-93.46,"Union",2
+"Southaven MS","MS",40806,34.97,-90,"Confederate",2
+"West New York NY","NY",46091,40.77,-73.98,"Union",2
+"Spring Hill FL","FL",103782,28.48,-82.56,"Confederate",2
+"Council Bluffs IA","IA",58834,41.24,-95.86,"Union",2
+"Alexandria LA","LA",44933,31.29,-92.46,"Confederate",3
+"Wauwatosa WI","WI",45076,43.06,-88.03,"Union",2
+"Savannah GA","GA",124898,32.02,-81.13,"Confederate",3
+"Shawnee KS","KS",59626,39.02,-94.8,"Union",2
+"Chattanooga TN","TN",153617,35.07,-85.26,"Confederate",3
+"Montpelier VT","VT",8003,44.26,-72.57,"Union",2
+"Fayetteville AR","AR",66288,36.07,-94.16,"Confederate",3
+"Farmington Hills MI","MI",79530,42.49,-83.38,"Union",2
+"Madison AL","AL",39516,34.7,-86.75,"Confederate",3
+"Parsippany-Troy Hills Township NJ","NJ",52051,40.86,-74.42,"Union",2
+"Mount Pleasant SC","SC",61690,32.82,-79.86,"Confederate",3
+"Brookline MA","MA",55862,42.32,-71.14,"Union",2
+"Huntersville NC","NC",43970,35.41,-80.86,"Confederate",3
+"Pico Rivera CA","CA",66874,33.99,-118.09,"Union",2
+"Suffolk VA","VA",84396,36.7,-76.64,"Confederate",3
+"Cleveland OH","OH",443949,41.48,-81.68,"Union",2
+"San Marcos TX","TX",49051,29.88,-97.93,"Confederate",3
+"Bloomington IN","IN",71260,39.17,-86.52,"Union",2
+"Gulfport MS","MS",71400,30.39,-89.07,"Confederate",3
+"East Providence RI","RI",50750,41.8,-71.36,"Union",2
+"Palm Beach Gardens FL","FL",50768,26.84,-80.12,"Confederate",3
+"Medford OR","OR",70717,42.34,-122.85,"Union",2
+"Pompano Beach FL","FL",90446,26.24,-80.13,"Confederate",4
+"Reading PA","PA",79476,40.34,-75.93,"Union",2
+"El Paso TX","TX",603545,31.85,-106.44,"Confederate",4
+"Portland ME","ME",62882,43.66,-70.28,"Union",2
+"Concord NC","NC",61640,35.41,-80.59,"Confederate",4
+"Carol Stream IL","IL",39749,41.92,-88.13,"Union",2
+"Richmond VA","VA",189498,37.53,-77.47,"Confederate",4
+"Bridgeport CT","CT",138901,41.19,-73.2,"Union",2
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",4
+"Warren MI","MI",132537,42.49,-83.03,"Union",3
+"Fayetteville AR","AR",66288,36.07,-94.16,"Confederate",4
+"Woodbury MN","MN",52052,44.91,-92.92,"Union",3
+"Alexandria LA","LA",44933,31.29,-92.46,"Confederate",4
+"West Des Moines IA","IA",57126,41.57,-93.75,"Union",3
+"Knoxville TN","TN",172000,35.97,-83.95,"Confederate",4
+"New Milford CT","CT",58524,41.58,-73.41,"Union",3
+"Dothan AL","AL",62449,31.24,-85.41,"Confederate",4
+"Cleveland OH","OH",443949,41.48,-81.68,"Union",3
+"Macon GA","GA",93755,32.84,-83.66,"Confederate",4
+"Hillsboro OR","OR",85046,45.53,-122.94,"Union",3
+"North Charleston SC","SC",83247,32.91,-80.04,"Confederate",4
+"Evanston IL","IL",75419,42.05,-87.69,"Union",3
+"Greenville SC","SC",55421,34.84,-82.37,"Confederate",5
+"Portland ME","ME",62882,43.66,-70.28,"Union",3
+"Springdale AR","AR",58761,36.18,-94.15,"Confederate",5
+"Lenexa KS","KS",43935,38.96,-94.79,"Union",3
+"Fort Myers FL","FL",53961,26.63,-81.85,"Confederate",5
+"Warwick RI","RI",88443,41.7,-71.42,"Union",3
+"Redan GA","GA",40141,33.74,-84.16,"Confederate",5
+"Anderson IN","IN",57036,40.09,-85.69,"Union",3
+"Greenville NC","NC",72617,35.6,-77.37,"Confederate",5
+"State College PA","PA",42420,40.79,-77.86,"Union",3
+"Laredo TX","TX",218041,27.53,-99.49,"Confederate",5
+"Brookfield WI","WI",40323,43.06,-88.12,"Union",3
+"Southaven MS","MS",40806,34.97,-90,"Confederate",5
+"Nashua NH","NH",87113,42.75,-71.49,"Union",3
+"Arlington VA","VA",184603,38.88,-77.1,"Confederate",5
+"Buffalo NY","NY",276762,42.89,-78.86,"Union",3
+"Chattanooga TN","TN",153617,35.07,-85.26,"Confederate",5
+"Montpelier VT","VT",8003,44.26,-72.57,"Union",3
+"Shreveport LA","LA",196228,32.47,-93.8,"Confederate",5
+"Elizabeth NJ","NJ",124552,40.67,-74.19,"Union",3
+"Vestavia Hills AL","AL",39397,33.43,-86.79,"Confederate",5
+"Lake Elsinore CA","CA",43336,33.67,-117.32,"Union",3
+"Lafayette LA","LA",112317,30.22,-92.03,"Confederate",6
+"Dennis MA","MA",39833,41.74,-70.2,"Union",3
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",6
+"Portland ME","ME",62882,43.66,-70.28,"Union",4
+"Jackson TN","TN",62552,35.63,-88.83,"Confederate",6
+"Ames IA","IA",57683,42.02,-93.63,"Union",4
+"Mesquite TX","TX",132746,32.77,-96.6,"Confederate",6
+"West New York NY","NY",46091,40.77,-73.98,"Union",4
+"Montgomery AL","AL",197653,32.35,-86.28,"Confederate",6
+"Shawnee KS","KS",59626,39.02,-94.8,"Union",4
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",6
+"Cranston RI","RI",83595,41.77,-71.48,"Union",4
+"Kendale Lakes FL","FL",62715,25.71,-80.41,"Confederate",6
+"Bethlehem PA","PA",74087,40.63,-75.37,"Union",4
+"Wilson NC","NC",47191,35.73,-77.92,"Confederate",6
+"Hammond IN","IN",78051,41.62,-87.49,"Union",4
+"Redan GA","GA",40141,33.74,-84.16,"Confederate",6
+"Brockton MA","MA",94945,42.08,-71.03,"Union",4
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",6
+"Kettering OH","OH",55473,39.7,-84.15,"Union",4
+"Reston VA","VA",61977,38.95,-77.35,"Confederate",6
+"Montpelier VT","VT",8003,44.26,-72.57,"Union",4
+"New Orleans LA","LA",454207,30.07,-89.93,"Confederate",7
+"Bloomington MN","MN",80627,44.83,-93.32,"Union",4
+"Chattanooga TN","TN",153617,35.07,-85.26,"Confederate",7
+"Mount Prospect IL","IL",55100,42.07,-87.94,"Union",4
+"Fayetteville AR","AR",66288,36.07,-94.16,"Confederate",7
+"Fairfield CT","CT",59352,41.13,-73.26,"Union",4
+"Gulfport MS","MS",71400,30.39,-89.07,"Confederate",7
+"Eugene OR","OR",146483,44.05,-123.11,"Union",4
+"Marietta GA","GA",61946,33.95,-84.54,"Confederate",7
+"Camden NJ","NJ",80393,39.94,-75.11,"Union",4
+"Pensacola FL","FL",53652,30.44,-87.19,"Confederate",7
+"Highland CA","CA",52692,34.12,-117.19,"Union",4
+"Tuscaloosa AL","AL",80164,33.24,-87.54,"Confederate",7
+"La Crosse WI","WI",50147,43.83,-91.23,"Union",4
+"Greenville SC","SC",55421,34.84,-82.37,"Confederate",7
+"Saginaw MI","MI",56685,43.42,-83.95,"Union",4
+"Charlotte NC","NC",607111,35.2,-80.83,"Confederate",7
+"Concord NH","NH",42967,43.23,-71.56,"Union",4
+"Irving TX","TX",194407,32.86,-96.97,"Confederate",7
+"Portland ME","ME",62882,43.66,-70.28,"Union",5
+"Hampton VA","VA",148201,37.05,-76.29,"Confederate",7
+"Warwick RI","RI",88443,41.7,-71.42,"Union",5
+"Mount Pleasant SC","SC",61690,32.82,-79.86,"Confederate",8
+"Syracuse NY","NY",140793,43.04,-76.14,"Union",5
+"Rocky Mount NC","NC",56008,35.96,-77.81,"Confederate",8
+"Salem OR","OR",148942,44.92,-123.02,"Union",5
+"Miami Beach FL","FL",89531,25.81,-80.14,"Confederate",8
+"New Brunswick NJ","NJ",51044,40.49,-74.45,"Union",5
+"Arlington VA","VA",184603,38.88,-77.1,"Confederate",8
+"Cuyahoga Falls OH","OH",52223,41.17,-81.52,"Union",5
+"Augusta-Richmond GA","GA",192376,33.46,-81.99,"Confederate",8
+"Greenwood IN","IN",42298,39.62,-86.11,"Union",5
+"Jackson TN","TN",62552,35.63,-88.83,"Confederate",8
+"Bourne MA","MA",48580,41.74,-70.61,"Union",5
+"Biloxi MS","MS",47110,30.41,-88.93,"Confederate",8
+"Montpelier VT","VT",8003,44.26,-72.57,"Union",5
+"New Orleans LA","LA",454207,30.07,-89.93,"Confederate",8
+"Saint Cloud MN","MN",59074,45.55,-94.17,"Union",5
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",8
+"Racine WI","WI",78703,42.73,-87.81,"Union",5
+"Round Rock TX","TX",95330,30.52,-97.67,"Confederate",8
+"Wichita KS","KS",356051,37.69,-97.34,"Union",5
+"Montgomery AL","AL",197653,32.35,-86.28,"Confederate",8
+"Lansing MI","MI",117236,42.71,-84.55,"Union",5
+"Atlanta GA","GA",424096,33.76,-84.42,"Confederate",9
+"Waterloo IA","IA",65260,42.49,-92.35,"Union",5
+"Hendersonville TN","TN",45358,36.29,-86.6,"Confederate",9
+"Wilkes-Barre PA","PA",40242,41.25,-75.88,"Union",5
+"Huntsville AL","AL",169155,34.71,-86.63,"Confederate",9
+"Chicago IL","IL",2830144,41.84,-87.68,"Union",5
+"Shreveport LA","LA",196228,32.47,-93.8,"Confederate",9
+"Norwalk CT","CT",84801,41.09,-73.42,"Union",5
+"Gulfport MS","MS",71400,30.39,-89.07,"Confederate",9
+"Mountain View CA","CA",67788,37.4,-122.08,"Union",5
+"Bryan TX","TX",70386,30.67,-96.37,"Confederate",9
+"Nashua NH","NH",87113,42.75,-71.49,"Union",5
+"Conway AR","AR",53297,35.09,-92.45,"Confederate",9
+"Saint Clair Shores MI","MI",60089,42.49,-82.89,"Union",6
+"Saint Petersburg FL","FL",245804,27.76,-82.64,"Confederate",9
+"Hillsboro OR","OR",85046,45.53,-122.94,"Union",6
+"Burlington NC","NC",47290,36.08,-79.45,"Confederate",9
+"Attleboro MA","MA",44690,41.93,-71.3,"Union",6
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",9
+"Warwick RI","RI",88443,41.7,-71.42,"Union",6
+"Harrisonburg VA","VA",41992,38.44,-78.87,"Confederate",9
+"Montpelier VT","VT",8003,44.26,-72.57,"Union",6
+"Columbia SC","SC",118020,34.04,-80.89,"Confederate",10
+"Augusta ME","ME",18626,44.32,-69.77,"Union",6
+"Kendale Lakes FL","FL",62715,25.71,-80.41,"Confederate",10
+"Salina KS","KS",45715,38.82,-97.62,"Union",6
+"Nashville TN","TN",523547,36.17,-86.78,"Confederate",10
+"Manchester NH","NH",110384,42.98,-71.44,"Union",6
+"Springdale AR","AR",58761,36.18,-94.15,"Confederate",10
+"New Haven CT","CT",125030,41.31,-72.92,"Union",6
+"Kenner LA","LA",69514,29.99,-90.25,"Confederate",10
+"Harrisburg PA","PA",47576,40.28,-76.88,"Union",6
+"Macon GA","GA",93755,32.84,-83.66,"Confederate",10
+"Findlay OH","OH",40571,41.04,-83.64,"Union",6
+"Hickory NC","NC",40968,35.74,-81.33,"Confederate",10
+"Vineland NJ","NJ",58511,39.46,-75,"Union",6
+"Tuscaloosa AL","AL",80164,33.24,-87.54,"Confederate",10
+"Highland CA","CA",52692,34.12,-117.19,"Union",6
+"Texas City TX","TX",44321,29.41,-94.96,"Confederate",10
+"Peoria IL","IL",112894,40.74,-89.61,"Union",6
+"Richmond VA","VA",189498,37.53,-77.47,"Confederate",10
+"Dubuque IA","IA",57027,42.5,-90.69,"Union",6
+"Southaven MS","MS",40806,34.97,-90,"Confederate",10
+"Brentwood NY","NY",58954,40.78,-73.25,"Union",6
+"Virginia Beach VA","VA",453884,36.74,-76.04,"Confederate",11
+"Sheboygan WI","WI",48123,43.75,-87.73,"Union",6
+"Hoover AL","AL",67576,33.38,-86.82,"Confederate",11
+"Fishers IN","IN",58678,39.95,-86.02,"Union",6
+"Nashville TN","TN",523547,36.17,-86.78,"Confederate",11
+"Edina MN","MN",45648,44.89,-93.36,"Union",6
+"Charlotte NC","NC",607111,35.2,-80.83,"Confederate",11
+"Troy MI","MI",81296,42.58,-83.14,"Union",7
+"Kenner LA","LA",69514,29.99,-90.25,"Confederate",11
+"Woonsocket RI","RI",46297,42,-71.5,"Union",7
+"Gulfport MS","MS",71400,30.39,-89.07,"Confederate",11
+"Saint Paul MN","MN",272469,44.95,-93.1,"Union",7
+"Euless TX","TX",54705,32.85,-97.08,"Confederate",11
+"Augusta ME","ME",18626,44.32,-69.77,"Union",7
+"North Charleston SC","SC",83247,32.91,-80.04,"Confederate",11
+"Wauwatosa WI","WI",45076,43.06,-88.03,"Union",7
+"Sandy Springs GA","GA",96496,33.94,-84.37,"Confederate",11
+"DeKalb IL","IL",44223,41.93,-88.75,"Union",7
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",11
+"Montpelier VT","VT",8003,44.26,-72.57,"Union",7
+"Fort Myers FL","FL",53961,26.63,-81.85,"Confederate",11
+"Hutchinson KS","KS",40386,38.07,-97.91,"Union",7
+"Redan GA","GA",40141,33.74,-84.16,"Confederate",12
+"New York NY","NY",8124427,40.67,-73.94,"Union",7
+"Tampa FL","FL",328578,27.96,-82.48,"Confederate",12
+"Altoona PA","PA",46442,40.51,-78.4,"Union",7
+"Knoxville TN","TN",172000,35.97,-83.95,"Confederate",12
+"East Los Angeles CA","CA",125121,34.03,-118.17,"Union",7
+"Lake Charles LA","LA",69910,30.21,-93.2,"Confederate",12
+"Milford CT","CT",51360,41.23,-73.06,"Union",7
+"Greensboro NC","NC",233342,36.08,-79.83,"Confederate",12
+"Salem NH","NH",42859,42.53,-70.87,"Union",7
+"Blacksburg VA","VA",40303,37.23,-80.43,"Confederate",12
+"Jersey City NJ","NJ",237125,40.71,-74.06,"Union",7
+"El Paso TX","TX",603545,31.85,-106.44,"Confederate",12
+"Youngstown OH","OH",76590,41.1,-80.65,"Union",7
+"Columbia SC","SC",118020,34.04,-80.89,"Confederate",12
+"Anderson IN","IN",57036,40.09,-85.69,"Union",7
+"Fayetteville AR","AR",66288,36.07,-94.16,"Confederate",12
+"Ames IA","IA",57683,42.02,-93.63,"Union",7
+"Jackson MS","MS",175085,32.32,-90.21,"Confederate",12
+"Medford OR","OR",70717,42.34,-122.85,"Union",7
+"Hoover AL","AL",67576,33.38,-86.82,"Confederate",12
+"Sandwich MA","MA",51140,41.76,-70.5,"Union",7
+"Gulfport MS","MS",71400,30.39,-89.07,"Confederate",13
+"Hamden CT","CT",60388,41.37,-72.89,"Union",8
+"Fayetteville NC","NC",124919,35.07,-78.9,"Confederate",13
+"Maple Grove MN","MN",62021,45.11,-93.46,"Union",8
+"Nashville TN","TN",523547,36.17,-86.78,"Confederate",13
+"Ames IA","IA",57683,42.02,-93.63,"Union",8
+"Kenner LA","LA",69514,29.99,-90.25,"Confederate",13
+"Middletown OH","OH",53027,39.51,-84.37,"Union",8
+"Bedford TX","TX",49572,32.85,-97.13,"Confederate",13
+"Carol Stream IL","IL",39749,41.92,-88.13,"Union",8
+"Charleston SC","SC",106372,32.79,-79.99,"Confederate",13
+"West Allis WI","WI",58958,43.01,-88.03,"Union",8
+"Richmond VA","VA",189498,37.53,-77.47,"Confederate",13
+"Topeka KS","KS",121229,39.04,-95.69,"Union",8
+"Miami FL","FL",386740,25.78,-80.21,"Confederate",13
+"Antioch CA","CA",109485,37.99,-121.8,"Union",8
+"Sandy Springs GA","GA",96496,33.94,-84.37,"Confederate",13
+"Augusta ME","ME",18626,44.32,-69.77,"Union",8
+"Hoover AL","AL",67576,33.38,-86.82,"Confederate",13
+"Westland MI","MI",84414,42.32,-83.38,"Union",8
+"Springdale AR","AR",58761,36.18,-94.15,"Confederate",13
+"Altoona PA","PA",46442,40.51,-78.4,"Union",8
+"Midland TX","TX",98261,32.03,-102.1,"Confederate",14
+"Linden NJ","NJ",39964,40.63,-74.24,"Union",8
+"Knoxville TN","TN",172000,35.97,-83.95,"Confederate",14
+"Springfield OR","OR",56575,44.05,-122.98,"Union",8
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",14
+"Nashua NH","NH",87113,42.75,-71.49,"Union",8
+"Saint Petersburg FL","FL",245804,27.76,-82.64,"Confederate",14
+"Woonsocket RI","RI",46297,42,-71.5,"Union",8
+"Richmond VA","VA",189498,37.53,-77.47,"Confederate",14
+"West Seneca NY","NY",44418,42.84,-78.75,"Union",8
+"Sandy Springs GA","GA",96496,33.94,-84.37,"Confederate",14
+"Cambridge MA","MA",101342,42.38,-71.12,"Union",8
+"Baton Rouge LA","LA",222217,30.45,-91.13,"Confederate",14
+"Lafayette IN","IN",62589,40.41,-86.87,"Union",8
+"Conway AR","AR",53297,35.09,-92.45,"Confederate",14
+"Dayton OH","OH",157607,39.78,-84.2,"Union",9
+"Fayetteville NC","NC",124919,35.07,-78.9,"Confederate",14
+"Iowa City IA","IA",64490,41.66,-91.54,"Union",9
+"Dothan AL","AL",62449,31.24,-85.41,"Confederate",14
+"Oshkosh WI","WI",62967,44.02,-88.55,"Union",9
+"Rock Hill SC","SC",61899,34.94,-81.03,"Confederate",14
+"North Brunswick Township NJ","NJ",39567,40.45,-74.48,"Union",9
+"Orlando FL","FL",211226,28.5,-81.37,"Confederate",15
+"Eagan MN","MN",64393,44.82,-93.16,"Union",9
+"San Marcos TX","TX",49051,29.88,-97.93,"Confederate",15
+"Binghamton NY","NY",45070,42.1,-75.91,"Union",9
+"Huntersville NC","NC",43970,35.41,-80.86,"Confederate",15
+"Southfield MI","MI",76506,42.48,-83.26,"Union",9
+"Jackson TN","TN",62552,35.63,-88.83,"Confederate",15
+"Yorba Linda CA","CA",65932,33.89,-117.77,"Union",9
+"Fort Smith AR","AR",82304,35.37,-94.38,"Confederate",15
+"Salem NH","NH",42859,42.53,-70.87,"Union",9
+"Chantilly VA","VA",50103,38.88,-77.41,"Confederate",15
+"Springfield OR","OR",56575,44.05,-122.98,"Union",9
+"Dothan AL","AL",62449,31.24,-85.41,"Confederate",15
+"Columbus IN","IN",39453,39.21,-85.91,"Union",9
+"Southaven MS","MS",40806,34.97,-90,"Confederate",15
+"Greenwich CT","CT",64100,41.04,-73.59,"Union",9
+"Savannah GA","GA",124898,32.02,-81.13,"Confederate",15
+"Altoona PA","PA",46442,40.51,-78.4,"Union",9
+"Charleston SC","SC",106372,32.79,-79.99,"Confederate",15
+"Augusta ME","ME",18626,44.32,-69.77,"Union",9
+"Baton Rouge LA","LA",222217,30.45,-91.13,"Confederate",15
+"Champaign IL","IL",76999,40.11,-88.26,"Union",9
+"Chattanooga TN","TN",153617,35.07,-85.26,"Confederate",16
+"Shawnee KS","KS",59626,39.02,-94.8,"Union",9
+"Virginia Beach VA","VA",453884,36.74,-76.04,"Confederate",16
+"East Providence RI","RI",50750,41.8,-71.36,"Union",9
+"Lake Magdalene FL","FL",40413,28.07,-82.47,"Confederate",16
+"Beverly MA","MA",40441,42.56,-70.84,"Union",9
+"Jonesboro AR","AR",59233,35.82,-90.69,"Confederate",16
+"Augusta ME","ME",18626,44.32,-69.77,"Union",10
+"Bryan TX","TX",70386,30.67,-96.37,"Confederate",16
+"Saginaw MI","MI",56685,43.42,-83.95,"Union",10
+"Greensboro NC","NC",233342,36.08,-79.83,"Confederate",16
+"Council Bluffs IA","IA",58834,41.24,-95.86,"Union",10
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",16
+"Dayton OH","OH",157607,39.78,-84.2,"Union",10
+"Columbus GA","GA",184900,32.51,-84.87,"Confederate",16
+"Shawnee KS","KS",59626,39.02,-94.8,"Union",10
+"Columbia SC","SC",118020,34.04,-80.89,"Confederate",16
+"Carol Stream IL","IL",39749,41.92,-88.13,"Union",10
+"Lake Charles LA","LA",69910,30.21,-93.2,"Confederate",16
+"Buffalo NY","NY",276762,42.89,-78.86,"Union",10
+"Birmingham AL","AL",229300,33.53,-86.8,"Confederate",16
+"Haverhill MA","MA",61928,42.78,-71.09,"Union",10
+"Chattanooga TN","TN",153617,35.07,-85.26,"Confederate",17
+"Pleasanton CA","CA",67119,37.67,-121.89,"Union",10
+"Fort Smith AR","AR",82304,35.37,-94.38,"Confederate",17
+"Kenosha WI","WI",94673,42.58,-87.85,"Union",10
+"MacAllen TX","TX",125985,26.22,-98.24,"Confederate",17
+"Eden Prairie MN","MN",65076,44.85,-93.46,"Union",10
+"Savannah GA","GA",124898,32.02,-81.13,"Confederate",17
+"Bloomington IN","IN",71260,39.17,-86.52,"Union",10
+"Dothan AL","AL",62449,31.24,-85.41,"Confederate",17
+"Reading PA","PA",79476,40.34,-75.93,"Union",10
+"Baton Rouge LA","LA",222217,30.45,-91.13,"Confederate",17
+"Salem NH","NH",42859,42.53,-70.87,"Union",10
+"Greenville SC","SC",55421,34.84,-82.37,"Confederate",17
+"Bloomfield NJ","NJ",49358,40.81,-74.19,"Union",10
+"Miami FL","FL",386740,25.78,-80.21,"Confederate",17
+"Hillsboro OR","OR",85046,45.53,-122.94,"Union",10
+"Gulfport MS","MS",71400,30.39,-89.07,"Confederate",17
+"Norwalk CT","CT",84801,41.09,-73.42,"Union",10
+"Sterling VA","VA",56529,39.01,-77.43,"Confederate",17
+"Pawtucket RI","RI",75297,41.87,-71.37,"Union",10
+"Cary NC","NC",106117,35.78,-78.8,"Confederate",17
+"Gary IN","IN",96950,41.6,-87.34,"Union",11
+"Clarksville TN","TN",113379,36.56,-87.35,"Confederate",18
+"La Crosse WI","WI",50147,43.83,-91.23,"Union",11
+"Jacksonville FL","FL",809874,30.33,-81.66,"Confederate",18
+"Carol Stream IL","IL",39749,41.92,-88.13,"Union",11
+"Lafayette LA","LA",112317,30.22,-92.03,"Confederate",18
+"Manhattan KS","KS",45671,39.19,-96.59,"Union",11
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",18
+"Saginaw MI","MI",56685,43.42,-83.95,"Union",11
+"Wilson NC","NC",47191,35.73,-77.92,"Confederate",18
+"Augusta ME","ME",18626,44.32,-69.77,"Union",11
+"Charleston SC","SC",106372,32.79,-79.99,"Confederate",18
+"Shelton CT","CT",39988,41.3,-73.14,"Union",11
+"Tuscaloosa AL","AL",80164,33.24,-87.54,"Confederate",18
+"Brookline MA","MA",55862,42.32,-71.14,"Union",11
+"Fort Smith AR","AR",82304,35.37,-94.38,"Confederate",18
+"Dubuque IA","IA",57027,42.5,-90.69,"Union",11
+"Atlanta GA","GA",424096,33.76,-84.42,"Confederate",18
+"Lakewood NJ","NJ",43436,40.09,-74.21,"Union",11
+"Pasadena TX","TX",145351,29.66,-95.15,"Confederate",18
+"Middletown OH","OH",53027,39.51,-84.37,"Union",11
+"Hampton VA","VA",148201,37.05,-76.29,"Confederate",18
+"Erie PA","PA",98968,42.13,-80.09,"Union",11
+"Athens-Clarke GA","GA",103618,33.95,-83.39,"Confederate",19
+"West Babylon NY","NY",43595,40.71,-73.36,"Union",11
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",19
+"Santa Cruz CA","CA",54583,36.97,-122.04,"Union",11
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",19
+"Springfield OR","OR",56575,44.05,-122.98,"Union",11
+"Hickory NC","NC",40968,35.74,-81.33,"Confederate",19
+"Nashua NH","NH",87113,42.75,-71.49,"Union",11
+"Boca Raton FL","FL",81868,26.37,-80.11,"Confederate",19
+"Pawtucket RI","RI",75297,41.87,-71.37,"Union",11
+"Jackson TN","TN",62552,35.63,-88.83,"Confederate",19
+"Brooklyn Park MN","MN",67660,45.11,-93.35,"Union",11
+"Southaven MS","MS",40806,34.97,-90,"Confederate",19
+"Springfield OH","OH",63915,39.93,-83.8,"Union",12
+"Galveston TX","TX",56205,29.3,-94.81,"Confederate",19
+"Augusta ME","ME",18626,44.32,-69.77,"Union",12
+"Tuscaloosa AL","AL",80164,33.24,-87.54,"Confederate",19
+"Joliet IL","IL",141246,41.53,-88.12,"Union",12
+"Lake Charles LA","LA",69910,30.21,-93.2,"Confederate",19
+"Irvington NJ","NJ",61373,40.72,-74.23,"Union",12
+"Burke VA","VA",58270,38.78,-77.27,"Confederate",19
+"Lenexa KS","KS",43935,38.96,-94.79,"Union",12
+"MacLean VA","VA",39731,38.94,-77.18,"Confederate",20
+"Lafayette IN","IN",62589,40.41,-86.87,"Union",12
+"Baton Rouge LA","LA",222217,30.45,-91.13,"Confederate",20
+"Andover MA","MA",67715,42.65,-71.14,"Union",12
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",20
+"Woonsocket RI","RI",46297,42,-71.5,"Union",12
+"North Charleston SC","SC",83247,32.91,-80.04,"Confederate",20
+"Cherry Hill PA","PA",70489,39.9,-75,"Union",12
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",20
+"Duluth MN","MN",84472,46.78,-92.12,"Union",12
+"Macon GA","GA",93755,32.84,-83.66,"Confederate",20
+"Vacaville CA","CA",98110,38.36,-121.97,"Union",12
+"Charlotte NC","NC",607111,35.2,-80.83,"Confederate",20
+"Mount Vernon NY","NY",68048,40.91,-73.83,"Union",12
+"Dothan AL","AL",62449,31.24,-85.41,"Confederate",20
+"Salem NH","NH",42859,42.53,-70.87,"Union",12
+"San Antonio TX","TX",1278171,29.46,-98.51,"Confederate",20
+"Ames IA","IA",57683,42.02,-93.63,"Union",12
+"Jackson TN","TN",62552,35.63,-88.83,"Confederate",20
+"Muskegon MI","MI",40058,43.23,-86.26,"Union",12
+"North Port FL","FL",41919,27.05,-82.19,"Confederate",20
+"West Haven CT","CT",53545,41.27,-72.97,"Union",12
+"Knoxville TN","TN",172000,35.97,-83.95,"Confederate",21
+"Eau Claire WI","WI",63049,44.82,-91.49,"Union",12
+"Jackson MS","MS",175085,32.32,-90.21,"Confederate",21
+"Bend OR","OR",68945,44.07,-121.31,"Union",12
+"Haltom City TX","TX",42053,32.82,-97.27,"Confederate",21
+"Moline IL","IL",42427,41.49,-90.49,"Union",13
+"Lake Charles LA","LA",69910,30.21,-93.2,"Confederate",21
+"Montclair NJ","NJ",39801,40.82,-74.21,"Union",13
+"Mobile AL","AL",188467,30.68,-88.09,"Confederate",21
+"Binghamton NY","NY",45070,42.1,-75.91,"Union",13
+"Redan GA","GA",40141,33.74,-84.16,"Confederate",21
+"Lenexa KS","KS",43935,38.96,-94.79,"Union",13
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",21
+"Hamden CT","CT",60388,41.37,-72.89,"Union",13
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",21
+"San Bruno CA","CA",39523,37.62,-122.43,"Union",13
+"Cary NC","NC",106117,35.78,-78.8,"Confederate",21
+"Augusta ME","ME",18626,44.32,-69.77,"Union",13
+"Ocala FL","FL",50241,29.19,-82.13,"Confederate",21
+"Oshkosh WI","WI",62967,44.02,-88.55,"Union",13
+"Sterling VA","VA",56529,39.01,-77.43,"Confederate",21
+"Dubuque IA","IA",57027,42.5,-90.69,"Union",13
+"Hoover AL","AL",67576,33.38,-86.82,"Confederate",22
+"Carmel IN","IN",49188,39.97,-86.11,"Union",13
+"Wilson NC","NC",47191,35.73,-77.92,"Confederate",22
+"Blaine MN","MN",56140,45.17,-93.21,"Union",13
+"New Orleans LA","LA",454207,30.07,-89.93,"Confederate",22
+"Cuyahoga Falls OH","OH",52223,41.17,-81.52,"Union",13
+"Texas City TX","TX",44321,29.41,-94.96,"Confederate",22
+"Albany OR","OR",45535,44.62,-123.09,"Union",13
+"Fayetteville AR","AR",66288,36.07,-94.16,"Confederate",22
+"Sterling Heights MI","MI",127027,42.58,-83.03,"Union",13
+"Sterling VA","VA",56529,39.01,-77.43,"Confederate",22
+"Andover MA","MA",67715,42.65,-71.14,"Union",13
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",22
+"Wilkes-Barre PA","PA",40242,41.25,-75.88,"Union",13
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",22
+"Pawtucket RI","RI",75297,41.87,-71.37,"Union",13
+"Fort Lauderdale FL","FL",173597,26.14,-80.14,"Confederate",22
+"Nashua NH","NH",87113,42.75,-71.49,"Union",13
+"Columbus GA","GA",184900,32.51,-84.87,"Confederate",22
+"New Rochelle NY","NY",72865,40.92,-73.78,"Union",14
+"Murfreesboro TN","TN",88161,35.85,-86.39,"Confederate",22
+"Evanston IL","IL",75419,42.05,-87.69,"Union",14
+"Jackson TN","TN",62552,35.63,-88.83,"Confederate",23
+"Aloha OR","OR",45531,45.49,-122.87,"Union",14
+"Dothan AL","AL",62449,31.24,-85.41,"Confederate",23
+"Fort Wayne IN","IN",231147,41.07,-85.14,"Union",14
+"Port Orange FL","FL",55891,29.11,-81.01,"Confederate",23
+"Youngstown OH","OH",76590,41.1,-80.65,"Union",14
+"Sterling VA","VA",56529,39.01,-77.43,"Confederate",23
+"West Hartford CT","CT",67156,41.77,-72.75,"Union",14
+"Rocky Mount NC","NC",56008,35.96,-77.81,"Confederate",23
+"Lansing MI","MI",117236,42.71,-84.55,"Union",14
+"Brownsville TX","TX",174135,25.93,-97.48,"Confederate",23
+"Woonsocket RI","RI",46297,42,-71.5,"Union",14
+"Southaven MS","MS",40806,34.97,-90,"Confederate",23
+"Sioux City IA","IA",82863,42.5,-96.39,"Union",14
+"New Orleans LA","LA",454207,30.07,-89.93,"Confederate",23
+"Augusta ME","ME",18626,44.32,-69.77,"Union",14
+"Columbia SC","SC",118020,34.04,-80.89,"Confederate",23
+"Brentwood CA","CA",52747,37.93,-121.71,"Union",14
+"Columbus GA","GA",184900,32.51,-84.87,"Confederate",23
+"Oshkosh WI","WI",62967,44.02,-88.55,"Union",14
+"Conway AR","AR",53297,35.09,-92.45,"Confederate",23
+"Salem NH","NH",42859,42.53,-70.87,"Union",14
+"Macon GA","GA",93755,32.84,-83.66,"Confederate",24
+"Olathe KS","KS",118165,38.89,-94.81,"Union",14
+"Greensboro NC","NC",233342,36.08,-79.83,"Confederate",24
+"Scranton PA","PA",72516,41.4,-75.67,"Union",14
+"Edinburg TX","TX",63193,26.3,-98.16,"Confederate",24
+"Plainfield NJ","NJ",47769,40.62,-74.42,"Union",14
+"Chantilly VA","VA",50103,38.88,-77.41,"Confederate",24
+"Lawrence MA","MA",72669,42.7,-71.16,"Union",14
+"Mount Pleasant SC","SC",61690,32.82,-79.86,"Confederate",24
+"Plymouth MN","MN",73505,45.02,-93.46,"Union",14
+"Jackson MS","MS",175085,32.32,-90.21,"Confederate",24
+"Augusta ME","ME",18626,44.32,-69.77,"Union",15
+"Boca Raton FL","FL",81868,26.37,-80.11,"Confederate",24
+"Nashua NH","NH",87113,42.75,-71.49,"Union",15
+"Birmingham AL","AL",229300,33.53,-86.8,"Confederate",24
+"Scranton PA","PA",72516,41.4,-75.67,"Union",15
+"Jackson TN","TN",62552,35.63,-88.83,"Confederate",24
+"Blaine MN","MN",56140,45.17,-93.21,"Union",15
+"Kenner LA","LA",69514,29.99,-90.25,"Confederate",24
+"Sioux City IA","IA",82863,42.5,-96.39,"Union",15
+"Springdale AR","AR",58761,36.18,-94.15,"Confederate",24
+"La Crosse WI","WI",50147,43.83,-91.23,"Union",15
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",25
+"Crystal Lake IL","IL",41874,42.23,-88.33,"Union",15
+"Charlotte NC","NC",607111,35.2,-80.83,"Confederate",25
+"Methuen MA","MA",45666,42.73,-71.19,"Union",15
+"El Paso TX","TX",603545,31.85,-106.44,"Confederate",25
+"Hempstead NY","NY",52769,40.7,-73.62,"Union",15
+"Danville VA","VA",45382,36.58,-79.41,"Confederate",25
+"Shelton CT","CT",39988,41.3,-73.14,"Union",15
+"Macon GA","GA",93755,32.84,-83.66,"Confederate",25
+"Orange CA","CA",134868,33.81,-117.82,"Union",15
+"Lafayette LA","LA",112317,30.22,-92.03,"Confederate",25
+"Gary IN","IN",96950,41.6,-87.34,"Union",15
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",25
+"Lenexa KS","KS",43935,38.96,-94.79,"Union",15
+"Coconut Creek FL","FL",51848,26.28,-80.18,"Confederate",25
+"Lorain OH","OH",67692,41.44,-82.18,"Union",15
+"Tuscaloosa AL","AL",80164,33.24,-87.54,"Confederate",25
+"Lansing MI","MI",117236,42.71,-84.55,"Union",15
+"Jackson TN","TN",62552,35.63,-88.83,"Confederate",25
+"Union City NJ","NJ",65939,40.77,-74.03,"Union",15
+"Jackson MS","MS",175085,32.32,-90.21,"Confederate",25
+"Gresham OR","OR",100674,45.5,-122.44,"Union",15
+"Kenner LA","LA",69514,29.99,-90.25,"Confederate",26
+"Pawtucket RI","RI",75297,41.87,-71.37,"Union",15
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",26
+"Lincoln CA","CA",40805,38.89,-121.3,"Union",16
+"Knoxville TN","TN",172000,35.97,-83.95,"Confederate",26
+"Augusta ME","ME",18626,44.32,-69.77,"Union",16
+"Atlanta GA","GA",424096,33.76,-84.42,"Confederate",26
+"Lawrence MA","MA",72669,42.7,-71.16,"Union",16
+"Hampton VA","VA",148201,37.05,-76.29,"Confederate",26
+"Pittsburgh PA","PA",316272,40.44,-79.98,"Union",16
+"Ocala FL","FL",50241,29.19,-82.13,"Confederate",26
+"Hutchinson KS","KS",40386,38.07,-97.91,"Union",16
+"Galveston TX","TX",56205,29.3,-94.81,"Confederate",26
+"Shelton CT","CT",39988,41.3,-73.14,"Union",16
+"Fayetteville AR","AR",66288,36.07,-94.16,"Confederate",26
+"New Rochelle NY","NY",72865,40.92,-73.78,"Union",16
+"Hoover AL","AL",67576,33.38,-86.82,"Confederate",26
+"Woonsocket RI","RI",46297,42,-71.5,"Union",16
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",26
+"West Des Moines IA","IA",57126,41.57,-93.75,"Union",16
+"Fayetteville NC","NC",124919,35.07,-78.9,"Confederate",26
+"Lakeville MN","MN",52745,44.68,-93.24,"Union",16
+"El Paso TX","TX",603545,31.85,-106.44,"Confederate",27
+"DeKalb IL","IL",44223,41.93,-88.75,"Union",16
+"Sunrise FL","FL",92094,26.15,-80.3,"Confederate",27
+"Linden NJ","NJ",39964,40.63,-74.24,"Union",16
+"Mobile AL","AL",188467,30.68,-88.09,"Confederate",27
+"Kokomo IN","IN",46130,40.48,-86.13,"Union",16
+"Kenner LA","LA",69514,29.99,-90.25,"Confederate",27
+"Janesville WI","WI",61952,42.68,-89.02,"Union",16
+"Athens-Clarke GA","GA",103618,33.95,-83.39,"Confederate",27
+"Pontiac MI","MI",67952,42.65,-83.29,"Union",16
+"MacLean VA","VA",39731,38.94,-77.18,"Confederate",27
+"Akron OH","OH",206634,41.08,-81.52,"Union",16
+"Conway AR","AR",53297,35.09,-92.45,"Confederate",27
+"Beaverton OR","OR",83920,45.48,-122.82,"Union",16
+"Clarksville TN","TN",113379,36.56,-87.35,"Confederate",27
+"Salem NH","NH",42859,42.53,-70.87,"Union",16
+"Southaven MS","MS",40806,34.97,-90,"Confederate",27
+"Belleville IL","IL",40745,38.53,-90,"Union",17
+"Cary NC","NC",106117,35.78,-78.8,"Confederate",27
+"Nashua NH","NH",87113,42.75,-71.49,"Union",17
+"North Charleston SC","SC",83247,32.91,-80.04,"Confederate",27
+"Findlay OH","OH",40571,41.04,-83.64,"Union",17
+"Murfreesboro TN","TN",88161,35.85,-86.39,"Confederate",28
+"Augusta ME","ME",18626,44.32,-69.77,"Union",17
+"Chesapeake VA","VA",223222,36.68,-76.31,"Confederate",28
+"Dearborn Heights MI","MI",55964,42.33,-83.27,"Union",17
+"Birmingham AL","AL",229300,33.53,-86.8,"Confederate",28
+"East Providence RI","RI",50750,41.8,-71.36,"Union",17
+"Lafayette LA","LA",112317,30.22,-92.03,"Confederate",28
+"Edina MN","MN",45648,44.89,-93.36,"Union",17
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",28
+"Lower Merion PA","PA",60579,40.03,-75.28,"Union",17
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",28
+"Arcadia CA","CA",57429,34.13,-118.04,"Union",17
+"Greensboro NC","NC",233342,36.08,-79.83,"Confederate",28
+"Bristol CT","CT",61166,41.68,-72.94,"Union",17
+"New Braunfels TX","TX",47533,29.7,-98.12,"Confederate",28
+"Corvallis OR","OR",50932,44.57,-123.28,"Union",17
+"Conway AR","AR",53297,35.09,-92.45,"Confederate",28
+"Gary IN","IN",96950,41.6,-87.34,"Union",17
+"Athens-Clarke GA","GA",103618,33.95,-83.39,"Confederate",28
+"West Allis WI","WI",58958,43.01,-88.03,"Union",17
+"Ocala FL","FL",50241,29.19,-82.13,"Confederate",28
+"Brewster MA","MA",52153,41.77,-70.08,"Union",17
+"North Charleston SC","SC",83247,32.91,-80.04,"Confederate",29
+"Edison NJ","NJ",103448,40.53,-74.37,"Union",17
+"Cedar Park TX","TX",58499,30.51,-97.83,"Confederate",29
+"Council Bluffs IA","IA",58834,41.24,-95.86,"Union",17
+"Atlanta GA","GA",424096,33.76,-84.42,"Confederate",29
+"Salina KS","KS",45715,38.82,-97.62,"Union",17
+"Daytona Beach FL","FL",64735,29.19,-81.05,"Confederate",29
+"White Plains NY","NY",58084,41.02,-73.76,"Union",17
+"Charlotte NC","NC",607111,35.2,-80.83,"Confederate",29
+"Greenwich CT","CT",64100,41.04,-73.59,"Union",18
+"Dothan AL","AL",62449,31.24,-85.41,"Confederate",29
+"South Whittier CA","CA",59657,33.93,-118.03,"Union",18
+"Lafayette LA","LA",112317,30.22,-92.03,"Confederate",29
+"Wyoming MI","MI",70474,42.89,-85.7,"Union",18
+"Southaven MS","MS",40806,34.97,-90,"Confederate",29
+"Tigard OR","OR",48122,45.43,-122.77,"Union",18
+"Knoxville TN","TN",172000,35.97,-83.95,"Confederate",29
+"Harrisburg PA","PA",47576,40.28,-76.88,"Union",18
+"Reston VA","VA",61977,38.95,-77.35,"Confederate",29
+"Edina MN","MN",45648,44.89,-93.36,"Union",18
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",29
+"Salem NH","NH",42859,42.53,-70.87,"Union",18
+"Memphis TN","TN",639736,35.11,-90.01,"Confederate",30
+"Woonsocket RI","RI",46297,42,-71.5,"Union",18
+"Redan GA","GA",40141,33.74,-84.16,"Confederate",30
+"Greenwood IN","IN",42298,39.62,-86.11,"Union",18
+"Shreveport LA","LA",196228,32.47,-93.8,"Confederate",30
+"Palatine IL","IL",68308,42.11,-88.04,"Union",18
+"Carol City FL","FL",63659,25.94,-80.27,"Confederate",30
+"Syracuse NY","NY",140793,43.04,-76.14,"Union",18
+"Cary NC","NC",106117,35.78,-78.8,"Confederate",30
+"Augusta ME","ME",18626,44.32,-69.77,"Union",18
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",30
+"Wauwatosa WI","WI",45076,43.06,-88.03,"Union",18
+"Birmingham AL","AL",229300,33.53,-86.8,"Confederate",30
+"Council Bluffs IA","IA",58834,41.24,-95.86,"Union",18
+"Mount Pleasant SC","SC",61690,32.82,-79.86,"Confederate",30
+"Lowell MA","MA",103085,42.64,-71.32,"Union",18
+"Arlington TX","TX",374729,32.69,-97.13,"Confederate",30
+"Cincinnati OH","OH",301561,39.14,-84.51,"Union",18
+"Arlington VA","VA",184603,38.88,-77.1,"Confederate",30
+"Passaic NJ","NJ",69035,40.86,-74.13,"Union",18
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",30
+"Topeka KS","KS",121229,39.04,-95.69,"Union",18
+"Atlanta GA","GA",424096,33.76,-84.42,"Confederate",31
+"Lawrence KS","KS",83948,38.96,-95.26,"Union",19
+"Mobile AL","AL",188467,30.68,-88.09,"Confederate",31
+"Euclid OH","OH",49602,41.59,-81.52,"Union",19
+"Arlington TX","TX",374729,32.69,-97.13,"Confederate",31
+"Aloha OR","OR",45531,45.49,-122.87,"Union",19
+"Conway AR","AR",53297,35.09,-92.45,"Confederate",31
+"Salem NH","NH",42859,42.53,-70.87,"Union",19
+"Mount Pleasant SC","SC",61690,32.82,-79.86,"Confederate",31
+"Methuen MA","MA",45666,42.73,-71.19,"Union",19
+"Memphis TN","TN",639736,35.11,-90.01,"Confederate",31
+"Wilkes-Barre PA","PA",40242,41.25,-75.88,"Union",19
+"Hickory NC","NC",40968,35.74,-81.33,"Confederate",31
+"Manteca CA","CA",69588,37.8,-121.22,"Union",19
+"Virginia Beach VA","VA",453884,36.74,-76.04,"Confederate",31
+"Bloomington MN","MN",80627,44.83,-93.32,"Union",19
+"New Orleans LA","LA",454207,30.07,-89.93,"Confederate",31
+"Waterbury CT","CT",108645,41.56,-73.04,"Union",19
+"Southaven MS","MS",40806,34.97,-90,"Confederate",31
+"Albany NY","NY",93576,42.67,-73.8,"Union",19
+"Boca Raton FL","FL",81868,26.37,-80.11,"Confederate",31
+"Ames IA","IA",57683,42.02,-93.63,"Union",19
+"Coconut Creek FL","FL",51848,26.28,-80.18,"Confederate",32
+"Skokie IL","IL",64350,42.04,-87.74,"Union",19
+"North Charleston SC","SC",83247,32.91,-80.04,"Confederate",32
+"Warwick RI","RI",88443,41.7,-71.42,"Union",19
+"Chapel Hill NC","NC",47613,35.93,-79.04,"Confederate",32
+"Carmel IN","IN",49188,39.97,-86.11,"Union",19
+"Burke VA","VA",58270,38.78,-77.27,"Confederate",32
+"Augusta ME","ME",18626,44.32,-69.77,"Union",19
+"Atlanta GA","GA",424096,33.76,-84.42,"Confederate",32
+"Troy MI","MI",81296,42.58,-83.14,"Union",19
+"Dothan AL","AL",62449,31.24,-85.41,"Confederate",32
+"Elizabeth NJ","NJ",124552,40.67,-74.19,"Union",19
+"Conway AR","AR",53297,35.09,-92.45,"Confederate",32
+"Waukesha WI","WI",68725,43.01,-88.24,"Union",19
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",32
+"Lakeville MN","MN",52745,44.68,-93.24,"Union",20
+"Kenner LA","LA",69514,29.99,-90.25,"Confederate",32
+"Sterling Heights MI","MI",127027,42.58,-83.03,"Union",20
+"Arlington TX","TX",374729,32.69,-97.13,"Confederate",32
+"Warwick RI","RI",88443,41.7,-71.42,"Union",20
+"Knoxville TN","TN",172000,35.97,-83.95,"Confederate",32
+"Augusta ME","ME",18626,44.32,-69.77,"Union",20
+"Tuscaloosa AL","AL",80164,33.24,-87.54,"Confederate",33
+"Cedar Rapids IA","IA",123243,41.97,-91.67,"Union",20
+"North Little Rock AR","AR",58771,34.79,-92.26,"Confederate",33
+"North Bergen NJ","NJ",64575,40.79,-74.03,"Union",20
+"Lafayette LA","LA",112317,30.22,-92.03,"Confederate",33
+"West Haven CT","CT",53545,41.27,-72.97,"Union",20
+"San Marcos TX","TX",49051,29.88,-97.93,"Confederate",33
+"State College PA","PA",42420,40.79,-77.86,"Union",20
+"Macon GA","GA",93755,32.84,-83.66,"Confederate",33
+"Lenexa KS","KS",43935,38.96,-94.79,"Union",20
+"Knoxville TN","TN",172000,35.97,-83.95,"Confederate",33
+"Troy NY","NY",47993,42.73,-73.68,"Union",20
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",33
+"Mansfield OH","OH",50010,40.76,-82.53,"Union",20
+"Greensboro NC","NC",233342,36.08,-79.83,"Confederate",33
+"Nashua NH","NH",87113,42.75,-71.49,"Union",20
+"Jackson MS","MS",175085,32.32,-90.21,"Confederate",33
+"Oshkosh WI","WI",62967,44.02,-88.55,"Union",20
+"Arlington VA","VA",184603,38.88,-77.1,"Confederate",33
+"Long Beach CA","CA",486571,33.79,-118.16,"Union",20
+"North Miami Beach FL","FL",39551,25.93,-80.17,"Confederate",33
+"Naperville IL","IL",147178,41.76,-88.15,"Union",20
+"Kenner LA","LA",69514,29.99,-90.25,"Confederate",34
+"Quincy MA","MA",89347,42.26,-71.01,"Union",20
+"Flower Mound TX","TX",70449,33.03,-97.09,"Confederate",34
+"Hammond IN","IN",78051,41.62,-87.49,"Union",20
+"Tamiami FL","FL",72493,25.76,-80.4,"Confederate",34
+"Bend OR","OR",68945,44.07,-121.31,"Union",20
+"Fayetteville AR","AR",66288,36.07,-94.16,"Confederate",34
+"Peoria IL","IL",112894,40.74,-89.61,"Union",21
+"Macon GA","GA",93755,32.84,-83.66,"Confederate",34
+"Corvallis OR","OR",50932,44.57,-123.28,"Union",21
+"Wilson NC","NC",47191,35.73,-77.92,"Confederate",34
+"Salem NH","NH",42859,42.53,-70.87,"Union",21
+"Mount Pleasant SC","SC",61690,32.82,-79.86,"Confederate",34
+"Troy MI","MI",81296,42.58,-83.14,"Union",21
+"Tuscaloosa AL","AL",80164,33.24,-87.54,"Confederate",34
+"New Britain CT","CT",71362,41.68,-72.79,"Union",21
+"Virginia Beach VA","VA",453884,36.74,-76.04,"Confederate",34
+"Hamilton NJ","NJ",91245,40.09,-74.39,"Union",21
+"Memphis TN","TN",639736,35.11,-90.01,"Confederate",34
+"Burnsville MN","MN",59357,44.76,-93.28,"Union",21
+"Jackson MS","MS",175085,32.32,-90.21,"Confederate",34
+"Utica NY","NY",58151,43.1,-75.23,"Union",21
+"Tampa FL","FL",328578,27.96,-82.48,"Confederate",35
+"Altoona PA","PA",46442,40.51,-78.4,"Union",21
+"Kenner LA","LA",69514,29.99,-90.25,"Confederate",35
+"Iowa City IA","IA",64490,41.66,-91.54,"Union",21
+"Fayetteville AR","AR",66288,36.07,-94.16,"Confederate",35
+"Fremont CA","CA",202574,37.53,-122,"Union",21
+"Jackson MS","MS",175085,32.32,-90.21,"Confederate",35
+"Pawtucket RI","RI",75297,41.87,-71.37,"Union",21
+"Dothan AL","AL",62449,31.24,-85.41,"Confederate",35
+"Augusta ME","ME",18626,44.32,-69.77,"Union",21
+"Blacksburg VA","VA",40303,37.23,-80.43,"Confederate",35
+"Hingham MA","MA",41654,42.24,-70.89,"Union",21
+"Memphis TN","TN",639736,35.11,-90.01,"Confederate",35
+"Cleveland Heights OH","OH",47123,41.51,-81.56,"Union",21
+"Huntersville NC","NC",43970,35.41,-80.86,"Confederate",35
+"Bloomington IN","IN",71260,39.17,-86.52,"Union",21
+"Columbia SC","SC",118020,34.04,-80.89,"Confederate",35
+"La Crosse WI","WI",50147,43.83,-91.23,"Union",21
+"Athens-Clarke GA","GA",103618,33.95,-83.39,"Confederate",35
+"Shawnee KS","KS",59626,39.02,-94.8,"Union",21
+"Midland TX","TX",98261,32.03,-102.1,"Confederate",35
+"Erie PA","PA",98968,42.13,-80.09,"Union",22
+"Greensboro NC","NC",233342,36.08,-79.83,"Confederate",36
+"Wyoming MI","MI",70474,42.89,-85.7,"Union",22
+"Tuscaloosa AL","AL",80164,33.24,-87.54,"Confederate",36
+"Mount Vernon NY","NY",68048,40.91,-73.83,"Union",22
+"Coconut Creek FL","FL",51848,26.28,-80.18,"Confederate",36
+"Augusta ME","ME",18626,44.32,-69.77,"Union",22
+"Danville VA","VA",45382,36.58,-79.41,"Confederate",36
+"Bloomington IN","IN",71260,39.17,-86.52,"Union",22
+"New Orleans LA","LA",454207,30.07,-89.93,"Confederate",36
+"Toms River NJ","NJ",127934,39.94,-74.17,"Union",22
+"Pharr TX","TX",63806,26.18,-98.19,"Confederate",36
+"Woonsocket RI","RI",46297,42,-71.5,"Union",22
+"Memphis TN","TN",639736,35.11,-90.01,"Confederate",36
+"Salem NH","NH",42859,42.53,-70.87,"Union",22
+"Atlanta GA","GA",424096,33.76,-84.42,"Confederate",36
+"Lowell MA","MA",103085,42.64,-71.32,"Union",22
+"Little Rock AR","AR",184323,34.72,-92.35,"Confederate",36
+"Waukesha WI","WI",68725,43.01,-88.24,"Union",22
+"Sumter SC","SC",40018,33.94,-80.39,"Confederate",36
+"Elyria OH","OH",55811,41.38,-82.11,"Union",22
+"Hattiesburg MS","MS",48728,31.31,-89.31,"Confederate",36
+"Overland Park KS","KS",169520,38.91,-94.68,"Union",22
+"Memphis TN","TN",639736,35.11,-90.01,"Confederate",37
+"Bend OR","OR",68945,44.07,-121.31,"Union",22
+"Birmingham AL","AL",229300,33.53,-86.8,"Confederate",37
+"Cedar Rapids IA","IA",123243,41.97,-91.67,"Union",22
+"Columbus GA","GA",184900,32.51,-84.87,"Confederate",37
+"Monterey Park CA","CA",63766,34.05,-118.13,"Union",22
+"Pinellas Park FL","FL",46469,27.86,-82.71,"Confederate",37

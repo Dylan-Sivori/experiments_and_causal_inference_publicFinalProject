@@ -1,0 +1,686 @@
+---
+title: "powerAnalysis"
+authors: "Jonathan Hernandez & Dylan Sivori"
+output: html_document
+---
+
+```{r}
+# code sample
+library(dplyr)
+library(sandwich)
+library(stargazer)
+library(lmtest)
+library(data.table)
+library(ggplot2)
+library(knitr)
+
+# custom
+library(tidyr)
+library(grid)
+library(gridExtra)
+```
+
+```{r}
+set.seed(123)
+```
+
+# Research Question:
+
+Does the gender or race of a potential customer affect response rates when requesting catering orders from U.S. states that historically supported slavery?
+
+# Data Structure Plan of Record:
+
+-   Factor 1 Geographic Block: union, confederacy
+
+    -   Factor 2 Race Treatment: white / black names
+
+        -   Factor 3 Gender Treatment: male / female names
+
+            -   Outcome Variable 1: response (binary)
+
+            -   Outcome Variable 2: budget acceptance (binary / NA)
+
+-   Total combinations: 2\^3 = 2x2x2 = 8 experimental cells
+
+## Draft Response Rate Map of Scenario 1:
+
+Rosen, J. (2010). *Legislative responsiveness to constituent ethnicity and grammar quality: A field experiment.*
+
+| Geography   | Race  | Gender | Experiment Mapping | Gender Adjustment | Final Rate |
+|-------------|-------|--------|--------------------|-------------------|------------|
+| Union       | White | Male   | 52                 | 0                 | 52         |
+| Union       | White | Female | 52                 | TBD               | TBD        |
+| Union       | Black | Male   | 37                 | 0                 | 37         |
+| Union       | Black | Female | 37                 | TBD               | TBD        |
+| Confederate | White | Male   | 29                 | 0                 | 29         |
+| Confederate | White | Female | 29                 | TBD               | TBD        |
+| Confederate | Black | Male   | 34                 | 0                 | 34         |
+| Confederate | Black | Female | 34                 | TBD               | TBD        |
+
+Drawn directly from the cell averages observed in the Jose versus Colin multi-factor experiment, which analyzed response rates in correspondence audits based on perceived ethnicity and grammar quality. Specifically, the 52% rate represents the response rate observed in the most favorable condition of that study (Colin with good grammar), which is used here to anchor the White Male response rate in the expected high-response Union region. The other source rates, 37% and 34%, correspond to less favorable experimental conditions in that study (e.g., Colin with bad grammar or Jose with bad grammar, respectively), reflecting lower response probability due to disadvantageous traits. These rates are applied across the geographies (Union/Confederate) and races (White/Black) to model expected discrimination, with lower rates generally assigned to the historically constrained Confederate region and to Black profiles. The table sets these initial rates as the male baseline (Gender Adjustment = 0), establishing the foundation for future analysis aimed at determining the necessary "Gender Adjustment" to calculate the final response rates for females in the study.
+
+## Draft Response Rate Map Scenario 2
+
+Bertrand, M., & Mullainathan, S. (2004). Are Emily and Greg more employable than Lakish and Jamal? A field experiment on labor market discrimination. American Economic Review.
+
+| Geography   | Race  | Gender | Experiment Mapping | Gender Adjustment | Final Rate |
+|-------------|-------|--------|--------------------|-------------------|------------|
+| Union       | White | Male   | 11.88              | 0.00              | 11.88      |
+| Union       | White | Female | 11.88              | +1.46             | 13.34      |
+| Union       | Black | Male   | 7.83               | 0.00              | 7.83       |
+| Union       | Black | Female | 7.83               | +0.87             | 8.70       |
+| Confederate | White | Male   | 8.61               | 0.00              | 8.61       |
+| Confederate | White | Female | 8.61               | +1.05             | 9.66       |
+| Confederate | Black | Male   | 5.81               | 0.00              | 5.81       |
+| Confederate | Black | Female | 5.81               | +0.64             | 6.45       |
+
+Callback rates derived from the Bertrand and Mullainathan (B&M) field experiment, "Are Emily and Greg More Employable than Lakisha and Jamal?". The rates used here are the percentage callback rates from the B&M study. To proxy for the geographical split (Union/Confederate), this simulation uses the observed callback rates from B&M’s Boston data (higher rates, proxy for Union) and Chicago data (lower rates, proxy for Confederate), aligning with the expectation that rates might be lower in historically slave-owning regions. The initial 'Jose Mapping' rates represent the anchored male rates observed by race in these proxy cities, with the 'Gender Adjustment' calculated by applying the difference in gender ratios (female rate relative to male rate) observed across the overall B&M sample to these anchors. The final rates illustrate the core finding of B&M that African American names received approximately 50 percent fewer callbacks for interviews compared to White names, with the gender adjustment reflecting the fact that females in that experiment often received slightly higher rates than males within the same racial group.
+
+## Draft Response Rate Map of Scenario 3
+
+Block, R., Crabtree, C., Holbein, J. B., & Monson, J. Q. (2021). Are Americans less likely to reply to emails from Black people relative to White people. Proceedings of the National Academy of Sciences.
+
+| Geography   | Race  | Gender | Experiment Mapping | Gender Adjustment | Final Rate |
+|-------------|-------|--------|--------------------|-------------------|------------|
+| Union       | White | Male   | 4.20               | 0.00              | 4.20       |
+| Union       | White | Female | 4.20               | TBD               | TBD        |
+| Union       | Black | Male   | 3.90               | 0.00              | 3.90       |
+| Union       | Black | Female | 3.90               | TBD               | TBD        |
+| Confederate | White | Male   | 1.60               | 0.00              | 1.60       |
+| Confederate | White | Female | 1.60               | TBD               | TBD        |
+| Confederate | Black | Male   | 1.40               | 0.00              | 1.40       |
+| Confederate | Black | Female | 1.40               | TBD               | TBD        |
+
+Observed response rates reported in Block et al. (2021), focus on the differential treatment of putatively White and Black senders. The initial 'Jose Mapping' rates for the Union proxy are anchored to the higher response rates observed among elected officials (4.2% for White senders and 3.9% for Black senders). The Confederate proxy uses the lower response rates observed across the general public sample (1.6% for White senders and 1.4% for Black senders), reflecting the expected lower rates in historically slave-owning regions. This structure directly models the finding that Black senders received fewer responses than White senders, a difference that Block et al. found to be statistically significant. Since the Block et al. study held gender status constant in the initial design summary and did not provide gender-specific rate breakdowns in the excerpts, the 'Gender Adjustment' remains TBD for the female categories.
+
+## Assessing Feasibility
+
+1.  Responses have massively different scales
+2.  Gender is unspecified for Scenarios 1 and 3
+3.  We map Geography from 3 constructs: (Direct from grammar, Boston/Chicago proxy, and Officials/Public proxy)
+4.  Race effects have inconsistent magnitudes
+
+# Final Scenarios, Imputation Strategy, & Assumptions:
+
+## [**Scenario 1: Colin Good Grammar.**]{.underline} Rosen, J. (2010). *Legislative responsiveness to constituent ethnicity and grammar quality: A field experiment.*
+
+| Geography   | Race  | Gender | Experiment Mapping | Gender Adjustment\* | Final Rate |
+|-------------|-------|--------|--------------------|---------------------|------------|
+| Union       | White | Male   | 52                 | 0                   | 52         |
+| Union       | White | Female | 52                 | +1.46\*             | 53.46      |
+| Union       | Black | Male   | 37                 | 0                   | 37         |
+| Union       | Black | Female | 37                 | +0.87\*             | 37.87      |
+| Confederate | White | Male   | 29                 | 0                   | 29         |
+| Confederate | White | Female | 29                 | +1.05\*             | 30.05      |
+| Confederate | Black | Male   | 34                 | 0                   | 34         |
+| Confederate | Black | Female | 34                 | +0.64\*             | 34.64      |
+
+Note that this particular scenario shows that Black Males will receive higher responses in Confederate states. *This contradicts our assumptions regarding the distribution of responses*, because we are using the effect sizes observed in the Jose vs. Colin experimental data literally (adjusted only for gender). Since this is merely a counterfactual state of the world, and a science fiction table, we are leaving it at is without manipulation or pre-selection. The plots will directly show measurable comparisons across block cohorts, irrespective of these theoretical response rates.
+
+## [**Scenario 2: Bertrand, M., & Mullainathan, S. (2004). Are Emily and Greg more employable than Lakisha and Jamal?**]{.underline}
+
+| Geography   | Race  | Gender | Experiment Mapping | Gender Adjustment | Final Rate |
+|-------------|-------|--------|--------------------|-------------------|------------|
+| Union       | White | Male   | 11.88              | 0.00              | 11.88      |
+| Union       | White | Female | 11.88              | +1.46             | 13.34      |
+| Union       | Black | Male   | 7.83               | 0.00              | 7.83       |
+| Union       | Black | Female | 7.83               | +0.87             | 8.70       |
+| Confederate | White | Male   | 8.61               | 0.00              | 8.61       |
+| Confederate | White | Female | 8.61               | +1.05             | 9.66       |
+| Confederate | Black | Male   | 5.81               | 0.00              | 5.81       |
+| Confederate | Black | Female | 5.81               | +0.64             | 6.45       |
+
+## [**Scenario 3: Block, R., Crabtree, C., Holbein, J. B., & Monson, J. Q. (2021)**]{.underline}
+
+| Geography   | Race  | Gender | Experiment Mapping | Gender Adjustment\* | Final Rate |
+|-------------|-------|--------|--------------------|---------------------|------------|
+| Union       | White | Male   | 4.20               | 0                   | 4.20       |
+| Union       | White | Female | 4.20               | +1.46\*             | 5.66       |
+| Union       | Black | Male   | 3.90               | 0                   | 3.90       |
+| Union       | Black | Female | 3.90               | +0.87\*             | 4.77       |
+| Confederate | White | Male   | 1.60               | 0                   | 1.60       |
+| Confederate | White | Female | 1.60               | +1.05\*             | 2.65       |
+| Confederate | Black | Male   | 1.40               | 0                   | 1.40       |
+| Confederate | Black | Female | 1.40               | +0.64\*             | 2.04       |
+
+## Assumptions
+
+1.  **Gender imputation method**: Scenarios 1 & 3 took each male rate and multiplied by weighted gender adjustments applying a closer approximation than is currently available (nothing) according to the female advantage in callback rates from scenario 2. The major problem is that is a employer context, and not a customer context, in which you could argue the incentives between hiring men or women is very different when it comes to responding to men or women's catering email requests. Employment discrimination may have different gender dynamics than service positions measured in 2004 - and this is likely confounded easily.
+2.  **Independence**: Each restaurant responds independently
+3.  **Homogeneity within cells**: All Union restaurants behave similarly to each other
+4.  **Fixed response probabilities**: Every restaurant in a cell has the same exact probability of responding
+5.  **No temporal effects**: Response rates don't change over the study period
+6.  **Undefined message content**: We haven't modeled the actual catering request content yet
+7.  **Percentages**: Table data are communicated in percentages
+
+# Experiment Proposal Task Decomposition:
+
+-   Design: JH/DS
+    -   Geographic Blocking, done
+    -   Race treatment, done
+    -   Gender treatment, done
+    -   One restaurant receives one treatment, done
+-   Outcomes: JH/DS
+    -   Response rate (binary), done
+    -   Budget acceptance (binary / NA), done
+-   Sample: JH/DS
+    -   Restaurants / caterers as subjects, done
+    -   Regional stratification & balance, done
+-   Analysis: JH/DS
+    -   Regression with robust SE, done
+    -   Discrimination effects, done
+    -   Regional differences, done
+    -   Plots, done
+
+```{r}
+# Total sample size
+n <- 400
+
+geography <- c("Union", "Confederate") 
+race <- c("White", "Black")
+gender <- c("Male", "Female")
+```
+
+```{r}
+# Create a balanced design: 100 observations per combination
+design <- expand.grid(
+    geography = geography,
+    race = race,
+    gender = gender
+)
+design
+```
+
+```{r}
+design$n <- n / nrow(design) # 50 per cell at n=400
+design
+```
+
+```{r}
+# Assign reply rates for Scenario 1 (Jose/Colin based):
+
+multi_female1and3 <- c(1.46, 0.87, 1.05, 0.64)  # order: union-white, union-black, confed-white, confed-black
+add_female2 <- c(1.46, 0.87, 1.05, 0.64)
+
+# Scenario 1
+design$reply_rate1 <- c(
+  52,
+  37,
+  29,
+  34,
+  52 + 1.46,
+  37 + 0.87,
+  29 + 1.05,
+  34 + 0.64
+)
+
+# Scenario 2
+design$reply_rate2 <- c(
+  0.1188 * 100,   # white-union-male
+  0.0783 * 100,     # black-union-male
+  0.0861 * 100,  # white-confederate-male
+  0.0581 * 100,    # black-confederate-male
+  0.1188 * 100 + add_female2[1],    # white-union-female
+  0.0783 * 100 + add_female2[2],     # black-union-female
+  0.0861 * 100 + add_female2[3],     # white-confederate-female
+  0.0581 * 100 + add_female2[4]  # black-confederate-female
+)
+
+# Scenario 3
+design$reply_rate3 <- c(
+  4.20,
+  3.90,
+  1.60,
+  1.40,
+  4.20 + 1.46,
+  3.90 + 0.87,
+  1.60 + 1.05,
+  1.40 + 0.64
+)
+```
+
+```{r}
+# Generate the data
+generate_data <- function(race_level, geo_level, gender_level, n, reply_rate1, reply_rate2, reply_rate3) {
+    response1 <- rbinom(n, size = 1, prob = reply_rate1/100)
+    response2 <- rbinom(n, size = 1, prob = reply_rate2/100)
+    response3 <- rbinom(n, size = 1, prob = reply_rate3/100)
+    
+    # assume 70% baseline, reduced by 15% for Black names
+    budget_base_prob <- ifelse(race_level == "White", 0.70, 0.55)
+    
+    # budget acceptance conditioned on response=1 (aka receiving a response at all)
+    budget_accept1 <- ifelse(response1 == 1, rbinom(n, 1, budget_base_prob), NA)
+    budget_accept2 <- ifelse(response2 == 1, rbinom(n, 1, budget_base_prob), NA)
+    budget_accept3 <- ifelse(response3 == 1, rbinom(n, 1, budget_base_prob), NA)
+    
+    data.frame(
+        race = rep(race_level, n),
+        geography = rep(geo_level, n),       
+        gender = rep(gender_level, n),       
+        received_reply1 = response1,
+        received_reply2 = response2,
+        received_reply3 = response3,
+        budget_accepted1 = budget_accept1,
+        budget_accepted2 = budget_accept2,
+        budget_accepted3 = budget_accept3
+    )
+}
+```
+
+```{r}
+experiment_data <- design %>%
+    rowwise() %>%
+    do(generate_data(
+        .$race,
+        .$geography,
+        .$gender,
+        .$n,
+        .$reply_rate1,
+        .$reply_rate2, 
+        .$reply_rate3
+    )) %>%  
+    ungroup()
+
+experiment_data
+```
+
+```{r}
+print("Reply rates by cell:")
+experiment_data %>%
+    group_by(race, geography, gender) %>%
+    summarise(
+        n = n(),
+        scenario1_actual = mean(received_reply1),
+        scenario2_actual = mean(received_reply2),
+        scenario3_actual = mean(received_reply3),
+        .groups = "drop"
+    ) %>%
+    print()
+```
+
+```{r}
+balance_check <- experiment_data %>%
+    group_by(geography, race, gender) %>%
+    summarise(n = n(), .groups = "drop")
+
+print("Regional Balance Check:")
+print(balance_check)
+
+# checkequal allocations across geos
+assert_balanced <- all(balance_check$n == 50)
+cat(sprintf("\nBalanced design confirmed: %s\n", assert_balanced))
+```
+
+```{r}
+# summary statistics by reply rates
+summary_stats <- design %>%
+  select(-n) %>%
+  mutate(
+    expected_rate1 = reply_rate1,
+    expected_rate2 = reply_rate2,
+    expected_rate3 = reply_rate3
+  )
+```
+
+```{r}
+plot_data <- design %>%
+  select(race, geography, gender, reply_rate1, reply_rate2, reply_rate3) %>%
+  pivot_longer(cols = starts_with("reply_rate"), 
+               names_to = "scenario",
+               names_prefix = "reply_rate",
+               values_to = "rate")
+
+ggplot(plot_data, aes(x = interaction(race, gender), y = rate, fill = geography)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~scenario, scales = "free_y", 
+             labeller = labeller(scenario = c("1" = "Scenario 1: Jose/Colin (29-58%)",
+                                              "2" = "Scenario 2: Bertrand (6-13%)",
+                                              "3" = "Scenario 3: Block (1-5%)"))) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  labs(title = "Response Rates Across Scenarios",
+       x = "Race.Gender Combination",
+       y = "Response Rate")
+```
+
+```{r}
+```
+
+```{r}
+# budget acceptance rates
+experiment_data %>%
+  group_by(race) %>%
+  summarise(
+    scenario1_budget_accept = mean(budget_accepted1, na.rm = TRUE),
+    scenario2_budget_accept = mean(budget_accepted2, na.rm = TRUE),
+    scenario3_budget_accept = mean(budget_accepted3, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  print(row.names = FALSE)
+```
+
+```{summary_stats <- design %>%}
+  summarise(
+    across(starts_with("reply_rate"), 
+           list(min = min, max = max, mean = mean, range = ~max(.) - min(.)),
+           .names = "{.col}_{.fn}")
+  )
+```
+
+```{r}
+# simplify conditioning with indicator variable option 
+experiment_data <- experiment_data %>%
+  mutate(
+    R = ifelse(race == "White", 0, 1), # race indicator
+    G = ifelse(geography == "Union", 0, 1), # geography indicator  
+    S = ifelse(gender == "Male", 0, 1)# sex/gender indicator
+  )
+```
+
+```{r}
+head(experiment_data)
+```
+
+```{r}
+table(experiment_data$geography, experiment_data$race, experiment_data$gender)
+
+```
+
+```{r}
+# test regional differences in discrimination
+test_regional_differences <- function(data, scenario_col) {
+    # subset by geography
+    union_data <- filter(data, geography == "Union")
+    confed_data <- filter(data, geography == "Confederate")
+    
+    # calculate discrimination effect in each region
+    union_model <- lm(as.formula(paste(scenario_col, "~ race")), data = union_data)
+    union_race_effect <- coef(union_model)["raceBlack"]
+    
+    confed_model <- lm(as.formula(paste(scenario_col, "~ race")), data = confed_data)
+    confed_race_effect <- coef(confed_model)["raceBlack"]
+    
+    # difference in discrimination between regions
+    regional_diff <- confed_race_effect - union_race_effect
+    
+    return(list(
+        union_effect = union_race_effect,
+        confederate_effect = confed_race_effect,
+        difference = regional_diff
+    ))
+}
+
+# test regional differences for each scenario
+regional1 <- test_regional_differences(experiment_data, "received_reply1")
+regional2 <- test_regional_differences(experiment_data, "received_reply2")
+regional3 <- test_regional_differences(experiment_data, "received_reply3")
+
+print("Regional Discrimination Differences - Scenario 1:")
+print(regional1)
+print("Regional Discrimination Differences - Scenario 2:")
+print(regional2)
+print("Regional Discrimination Differences - Scenario 3:")
+print(regional3)
+```
+
+```{r}
+test_discrimination_effects <- function(data, scenario_col) {
+    formula <- as.formula(paste(scenario_col, "~ race * geography * gender"))
+    model <- lm(formula, data = data)
+    robust_se <- vcovHC(model, type = "HC0")
+    coef_test <- coeftest(model, vcov = robust_se)
+    
+    # extract all discrimination-relevant effects
+    effects <- list(
+        race_main = coef_test["raceBlack", ],
+        geography_main = coef_test["geographyConfederate", ],
+        gender_main = coef_test["genderFemale", ],
+        race_x_geography = coef_test["raceBlack:geographyConfederate", ],
+        race_x_gender = coef_test["raceBlack:genderFemale", ],
+        geography_x_gender = coef_test["geographyConfederate:genderFemale", ],
+        three_way = coef_test["raceBlack:geographyConfederate:genderFemale", ]
+    )
+    
+    return(effects)
+}
+
+# test all three scenarios
+disc_effects_s1 <- test_discrimination_effects(experiment_data, "received_reply1")
+disc_effects_s2 <- test_discrimination_effects(experiment_data, "received_reply2")
+disc_effects_s3 <- test_discrimination_effects(experiment_data, "received_reply3")
+
+# display results
+print("Scenario 1 Discrimination Effects:")
+print(disc_effects_s1$race_main)
+print(disc_effects_s1$race_x_geography)
+```
+
+```{r}
+# function to run single simulation and test race effect
+run_single_simulation <- function(n, scenario_num) {
+  # calculate observations per cell
+  
+  n_per_cell <- n %/% 8
+  remainder <- n %% 8
+  cell_sizes <- c(rep(n_per_cell + 1, remainder), rep(n_per_cell, 8 - remainder))
+  expanded_design <- design[rep(1:8, times = cell_sizes), ]
+  
+  
+  if (scenario_num == 1) {
+    response_probs <- expanded_design$reply_rate1
+  } else if (scenario_num == 2) {
+    response_probs <- expanded_design$reply_rate2
+  } else if (scenario_num == 3) {
+    response_probs <- expanded_design$reply_rate3
+  }
+  
+  sim_data <- data.frame(
+    race = expanded_design$race,
+    geography = expanded_design$geography,
+    gender = expanded_design$gender,
+    response = rbinom(nrow(expanded_design), size = 1, prob = response_probs/100)
+  )
+  
+  # fit linear model: response ~ race + geography + gender
+
+  model <- lm(response ~ race + gender + geography + race:geography, data = sim_data)
+  
+
+  # compute robust se
+  robust_se <- vcovHC(model, type = "HC0")
+  
+  # extract p-value for race coefficient 
+  coef_test <- coeftest(model, vcov = robust_se)
+  p_value <- coef_test["raceBlack:geographyConfederate", "Pr(>|t|)"]
+  
+  return(p_value)
+}
+```
+
+```{r}
+# calculate power through repeated simulations
+calculate_power <- function(n, scenario_num, n_sims = 100) {
+  # run n_sims simulations and collect p-values
+  p_values <- replicate(n_sims, run_single_simulation(n, scenario_num))
+  # calculate proportion of simulations with p < 0.05
+  power <- mean(p_values < 0.05)
+  cat(sprintf("Scenario %d, n=%d: Power = %.3f\n", scenario_num, n, power))
+  return(power)
+}
+```
+
+```{r}
+generate_power_curves <- function() {
+  sample_sizes <- c(100, 200, 400, 600, 800, 1000, 1200, 1250, 1400, 1500, 1600, 1750, 1800, 1900, 2000, 5000, 10000)
+  power_results <- data.frame(
+    scenario = integer(),
+    sample_size = integer(),
+    power = numeric())
+  for (scenario in 1:3) {
+    cat(sprintf("\n Running Scenario %d \n", scenario))
+    for (n in sample_sizes) {
+      # calculate power for this combination
+      power <- calculate_power(n, scenario, n_sims = 1000)
+      power_results <- rbind(power_results, 
+                           data.frame(scenario = scenario,
+                                    sample_size = n,
+                                    power = power))}}
+  power_results$scenario_label <- factor(power_results$scenario,
+                                        levels = 1:3,
+                                        labels = c("Scenario 1: Jose/Colin (29-58%)",
+                                                  "Scenario 2: Bertrand (6-13%)",
+                                                  "Scenario 3: Block (1-5%)"))
+  return(power_results)}
+```
+
+```{r}
+plot_power_curves <- function(power_results) {
+  p <- ggplot(power_results, aes(x = sample_size, y = power, 
+                                  color = scenario_label, 
+                                  linetype = scenario_label)) +
+    geom_line(linewidth = 1.2) +
+    geom_point(size = 3) +
+    labs(title = "Power Analysis",
+         subtitle = "Power to detect race * geo interaction using regression with robust SE",
+         x = "Sample Size (total n)",
+         y = "Statistical Power",
+         color = "Scenario",
+         linetype = "Scenario") +
+    scale_y_continuous(limits = c(0, 1), 
+                      breaks = seq(0, 1, by = 0.2),
+                      labels = scales::percent) +
+    scale_x_continuous(breaks = c(100, 200, 400, 600, 800, 1000, 1200, 1250, 1400, 1500, 1600, 1750, 1800, 1900, 2000, 5000, 10000)) +
+    theme_minimal() +
+    theme(legend.position = "bottom",
+          legend.direction = "vertical",
+          plot.title = element_text(size = 14, face = "bold"),
+          plot.subtitle = element_text(size = 11, face = "italic"))
+  p <- p + annotate("text", x = 1800, y = 0.82, 
+                    label = "80% power", 
+                    size = 3, 
+                    color = "red")
+  return(p)
+}
+```
+
+```{r}
+power_results <- generate_power_curves()
+power_plot <- plot_power_curves(power_results)
+print(power_plot)
+write.csv(power_results, "power_analysis_results.csv", row.names = FALSE)
+```
+
+```{r}
+create_discrimination_plot <- function() {
+  # Calculate effect sizes for each scenario
+  effect_data <- data.frame(
+    scenario = rep(c("Scenario 1", "Scenario 2", "Scenario 3"), each = 4),
+    geography = rep(rep(c("Union", "Confederate"), each = 2), 3),
+    gender = rep(c("Male", "Female", "Male", "Female"), 3),
+    white_rate = c(
+      52, 53.46, 29, 30.05,  # Scenario 1
+      11.88, 13.34, 8.61, 9.66,  # Scenario 2
+      4.20, 5.66, 1.60, 2.65  # Scenario 3
+    ),
+    black_rate = c(
+      37, 37.87, 34, 34.64,  # Scenario 1
+      7.83, 8.70, 5.81, 6.45,  # Scenario 2
+      3.90, 4.77, 1.40, 2.04  # Scenario 3
+    ))
+
+  effect_data$discrimination <- effect_data$white_rate - effect_data$black_rate
+  ggplot(effect_data, aes(x = interaction(geography, gender), y = discrimination, fill = geography)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.5) +
+    facet_wrap(~scenario, scales = "free_y", nrow = 1) +
+    labs(title = "Discrimination effect sizes across experimental cells",
+         subtitle = "Observable tau percentage point difference : White - Black response rates",
+         x = "Geography × Gender",
+         y = "Discrimination Effect (pp)") +
+    scale_fill_manual(values = c("Union" = "#2166ac", "Confederate" = "#b2182b")) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1),
+          legend.position = "top",
+          plot.title = element_text(size = 16, face = "bold"))}
+```
+
+```{r}
+generate_summary_report <- function(power_results) {
+  # Sample sizes for 80% power
+  for(s in unique(power_results$scenario_label)) {
+    scenario_data <- filter(power_results, scenario_label == s)
+    power_80_n <- scenario_data$sample_size[which(scenario_data$power >= 0.80)[1]]
+    if(is.na(power_80_n)) power_80_n <- ">2000"
+    
+    cat(sprintf("%s:\n", s))
+    cat(sprintf("  - Sample size for 80%% power: n = %s\n", power_80_n))
+    cat(sprintf("  - Power at n=400: %.1f%%\n", 
+                100 * scenario_data$power[scenario_data$sample_size == 400]))
+    cat(sprintf("  - Power at n=1000: %.1f%%\n\n", 
+                100 * scenario_data$power[scenario_data$sample_size == 1000]))
+  }
+}
+```
+
+```{r}
+print_scenario_tables <- function() {
+  # Combine all rates and their labels into one data frame
+  all_rates <- data.frame(
+    Scenario = rep(c("Service", "Employment", "Political"), each = 8),
+    Geography = rep(c("Union", "Union", "Confederate", "Confederate"), times = 6),
+    Race = rep(c("White", "Black"), each = 4, times = 3),
+    Gender = rep(c("Male", "Female"), times = 12),
+    Rate = c(
+      # Scenario 1
+      design$reply_rate1,
+      # Scenario 2
+      design$reply_rate2,
+      # Scenario 3
+      design$reply_rate3
+    )
+  )
+  # Print a simple, readable table (sorted for clarity)
+  print(
+    all_rates[order(all_rates$Scenario, all_rates$Geography, all_rates$Race, all_rates$Gender), ],
+    row.names = FALSE
+  )
+}
+
+print_scenario_tables()
+```
+
+```{r}
+create_discrimination_plot()
+```
+
+```{r}
+generate_summary_report(power_results)
+```
+
+```{r}
+experiment_data %>%
+  group_by(geography, race, gender) %>%
+  summarise(
+    BudgetAccepted_S1 = mean(budget_accepted1, na.rm = TRUE),
+    BudgetAccepted_S2 = mean(budget_accepted2, na.rm = TRUE),
+    BudgetAccepted_S3 = mean(budget_accepted3, na.rm = TRUE),
+    n_S1 = sum(!is.na(budget_accepted1)),
+    n_S2 = sum(!is.na(budget_accepted2)),
+    n_S3 = sum(!is.na(budget_accepted3)),
+    .groups = "drop"
+  ) %>%
+  print(row.names = FALSE)
+```
+
+# Final Notes
+
+-   Race and geography are measurably able to affect reply probability, and the magnitude varies by the scenario
+
+-   Gender effects are present but secondary to race
+
+-   We were able to balance region throughout our designs and blocks
+
+-   Budget was modeled at 70% for white and 55% for black names, an arbitrary baseline
+
+-   Power analysis shows ample statistical power to detect discrimination in high-rate scenarios, but it's marginal when the mean differences are subtle and reply rates are low.

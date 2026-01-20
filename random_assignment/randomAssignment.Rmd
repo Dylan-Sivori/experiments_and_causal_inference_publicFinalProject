@@ -1,0 +1,338 @@
+---
+title: "Final Project Random Assignment"
+output: html_document
+---
+
+```{r}
+library(dplyr)
+library(sandwich)
+library(stargazer)
+library(lmtest)
+library(data.table)
+library(ggplot2)
+library(knitr)
+```
+
+```{r}
+set.seed(123)  # For reproducibility
+```
+
+```{r}
+d <- fread("~/241-fp/random_assignment/catering_businesses_by_state_forRandomAssignment.csv")
+head(d)
+```
+
+
+```{r}
+confederate_states <- c(
+  "South Carolina",
+  "Mississippi",
+  "Florida",
+  "Alabama",
+  "Georgia",
+  "Louisiana",
+  "Texas",
+  "Virginia",
+  "Arkansas",
+  "Tennessee",
+  "North Carolina")
+
+union_states <- c(
+  "California",
+  "Connecticut",
+  "Illinois",
+  "Indiana",
+  "Iowa",
+  "Kansas",
+  "Maine",
+  "Massachusetts",
+  "Michigan",
+  "Minnesota",
+  "New Hampshire",
+  "New Jersey",
+  "New York",
+  "Ohio",
+  "Oregon",
+  "Pennsylvania",
+  "Rhode Island",
+  "Vermont",
+  "Wisconsin"
+)
+
+# union supporting border states
+ex_b_states <- c(
+  "Delaware",
+  "Kentucky",
+  "Maryland",
+  "Missouri",
+  "West Virginia"
+)
+
+# unorganized territories during the civil war
+ex_u_states <- c(
+  "Colorado",
+  "North Dakota",
+  "South Dakota",
+  "Nebraska",
+  "Nevada",
+  "New Mexico",
+  "Utah",
+  "Washington",
+  "Oklahoma"
+)
+
+union_supporting_states <- list(union_states, ex_b_states, ex_u_states)
+union_supporting_states <- unlist(union_supporting_states)
+
+union_supporting_states
+
+```
+
+
+```{r}
+# add union vs confederacy column for later blocking
+d[ , alegiance := ifelse(
+  state %in% confederate_states,"Confederacy",
+  ifelse( state %in% union_supporting_states,"Union","Other")
+)]
+
+# add city column
+d[ , city := strsplit(address,",")[[1]][2]]
+
+# filter out places that don't have a website listed
+d <- d[website != "", ]
+
+head(d)
+
+```
+
+
+```{r}
+block_randomize - function(size) {
+# this function will be executed /within/ the data.table that
+# holds the data. It could be run outside, but the assignment
+# in place that data.table provides make it clean inside.
+conditions - c('Control', 'Treatment')
+if(size % 2 = 0) {
+# if there are an even number of units in each block this is easy
+urn - rep(conditions, times = size/2)
+} else if(size % 2 = 1) {
+# if there are an odd number, then produce conditions to the
+# nearest even number that is less than the number of units
+# then add one more assignment condition, sampled at random
+urn - c(rep(conditions, times = (size/2) - 0.5), sample(conditions, size = 1))
+}
+# now, shuffle it up return the shuffled sequence
+assignment - sample(urn)
+return(assignment)
+}
+
+
+```
+
+
+```{r}
+set.seed(123)
+
+treatments <- c("white_male", "white_female", "black_male", "black_female")
+
+# --- Simple block randomization function ---
+block_randomize <- function(size) {
+  urn <- rep(treatments, length.out = size)
+  sample(urn)
+}
+
+# --- Step 1: sample 50 from each block evenly across states ---
+sample_evenly <- function(dt, n_target) {
+  states <- unique(dt$state)
+  n_states <- length(states)
+  n_per_state <- floor(n_target / n_states)
+  
+  sampled <- dt[, .SD[sample(.N, min(.N, n_per_state))], by = state]
+  
+  # If undersampled due to small states, top off randomly (allowing replacement)
+  if (nrow(sampled) < n_target) {
+    remainder <- n_target - nrow(sampled)
+    extras <- dt[sample(.N, remainder, replace = FALSE)]
+    sampled <- rbind(sampled, extras)
+  }
+  
+  return(sampled)
+}
+
+# --- Apply separately to each allegiance ---
+union_sample <- sample_evenly(d[alegiance == "Union"], 52)
+confed_sample <- sample_evenly(d[alegiance == "Confederacy"], 52)
+
+# --- Combine back ---
+sampled <- rbind(union_sample, confed_sample)
+
+# --- Block randomize within each allegiance ---
+sampled[, assignment := block_randomize(.N), by = alegiance]
+
+# --- Check balance ---
+sampled[, .N, by = .(alegiance, assignment)]
+
+
+```
+
+
+```{r}
+sampled[ , city := strsplit(address,",")[[1]][2]]
+
+head(sampled)
+
+```
+
+
+```{r}
+# Total sample size
+n <- 400
+
+# Define levels of the two treatment factors
+email_names <- c("whiteName", "blackName")
+professionalism <- c("professional", "casual")
+block <- c("male","female")
+```
+
+```{r}
+# Create a balanced design: 100 observations per combination
+design <- expand.grid(
+    email_names = email_names,
+    professionalism = professionalism,
+    block = block
+)
+design
+```
+
+```{r}
+# Expand to 100 observations per treatment combination
+design$n <- n / nrow(design)
+design
+```
+
+```{r}
+# Assign reply rates:
+# Match order: white-professional, white-casual, black-professional, black-casual
+# This is the row order when grammar varies first
+design$reply_rate <- c(0.52, 0.29, 0.37, 0.34,0.52, 0.29, 0.37, 0.34)
+```
+
+```{r}
+# Generate the data
+generate_data <- function(emailer, prof_level, n, reply_rate) {
+    data.frame(
+        email_names = rep(emailer, n),
+        professionalism = rep(prof_level, n),
+        block = rep(block,n),
+        received_reply = rbinom(n, size = 1, prob = reply_rate)
+    )
+}
+```
+
+```{r}
+# Apply the function to each row of the design
+experiment_data <- design %>%
+    rowwise() %>%
+    do(generate_data(.$email_names, .$professionalism, .$n, .$reply_rate)) %>%
+    ungroup()
+
+experiment_data
+```
+
+```{r}
+# Optional: Check actual reply rates
+experiment_data %>%
+    group_by(email_names, professionalism) %>%
+    summarise(
+        reply_rate = mean(received_reply),
+        .groups = "drop"
+    )
+```
+
+
+```{r}
+# View head of data
+head(experiment_data)
+```
+
+```{r}
+# Create indicator columns
+experiment_data <- experiment_data %>%
+    mutate(
+        W  = ifelse(email_names == "whiteName", 1, 0),
+        P = ifelse(professionalism == "professional", 1, 0),
+        W_P = ifelse(email_names == "whiteName" & professionalism == "professional", 1, 0),
+        W_C = ifelse(email_names == "whiteName" & professionalism == "casual", 1, 0),
+        B_P = ifelse(email_names == "blackName" & professionalism == "professional", 1, 0),
+        B_C = ifelse(email_names == "blackName" & professionalism == "casual", 1, 0)
+    )
+experiment_data
+```
+
+```{r}
+# View the first few rows to confirm
+experiment_data <- data.table(experiment_data)
+
+head(experiment_data)
+```
+
+
+```{r}
+# Linear regression (with 4 indicators)
+m1 <- lm(received_reply ~ 0 + W_P + W_C + B_P + B_C,
+         data = experiment_data)
+summary(m1)
+arm::display(m1)
+
+m1$vcovHC_ <- vcovHC(m1)
+coeftest(m1, vcov. = m1$vcovHC_)
+```
+
+```{r}
+# Linear regression (with interaction)
+m2 <- lm(received_reply ~ 1 + W + P + W:P,
+         data = experiment_data)
+summary(m2)
+arm::display(m2)
+
+m2$vcovHC_ <- vcovHC(m2)
+coeftest(m2, vcov. = m2$vcovHC_)
+m2$coefficients
+```
+
+
+```{r}
+stargazer(m1, m2, 
+          type = 'text')
+```
+
+```{r}
+stargazer(
+    m1, m2,
+    type = 'text',
+    se=list(sqrt(diag(m1$vcovHC_)), sqrt(diag(m2$vcovHC_))), 
+    header=F
+)
+```
+
+# Power Analysis
+```{r}
+head(experiment_data)
+```
+```{r}
+percentages_to_sample <- seq(0.1, 2.0, by = 0.1) # 'fill this in'
+
+for(i in percentages_to_sample){
+  if( i < 0.5){
+    cat(i*100,
+        "% sample. Statistical power:",
+        mean(replicate(1000, experiment_data[ , .(received_reply = received_reply[sample(.N,i*nrow(experiment_data))]), by=email_names][ ,t.test(received_reply ~ email_names)]$p.value) < 0.05),'\n')
+  } else {
+    cat(i*100,
+        "% sample. Statistical power:",
+        mean(replicate(1000, experiment_data[ , .(received_reply = received_reply[sample(.N,i*nrow(experiment_data),replace = TRUE)]), by=email_names][ ,t.test(received_reply ~ email_names)]$p.value) < 0.05),'\n')
+  }
+}
+```
+

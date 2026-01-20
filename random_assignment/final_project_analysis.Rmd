@@ -1,0 +1,329 @@
+---
+title: "final_project_analysis"
+output: html_document
+---
+
+```{r load packages}
+
+library(data.table)
+
+library(sandwich)
+library(lmtest)
+
+library(stargazer)
+library(ggplot2)
+library(knitr)
+
+library(lfe)
+library(patchwork)
+
+```
+
+
+```{r}
+
+d <- fread("~/241-fp/random_assignment/final_random_assignment_2 - final_random_assignment_2.csv")
+
+# filter to campaign assignment = 1
+d <- d[ (campaign_assignment == 1) & (!is.na(time_sent) & time_sent != "") ,]
+
+# convert date and time
+d[ , date_sent := as.Date(date_sent,format = "%m/%d/%Y")]
+d[ , time_sent := as.ITime(time_sent)]
+
+# create race and gender columns
+d[ , race := as.integer(ifelse(grepl('black',assignment,fixed=TRUE),1,0))]
+d[ , gender := as.integer(ifelse(grepl('female',assignment,fixed=TRUE),1,0))]
+
+# create binary alegiance variable
+d[ , region := ifelse(test = allegiance_designation == 'Union',0,1)]
+d[ , region := as.integer(ifelse(grepl('Union',allegiance_designation,fixed=TRUE),0,1))]
+
+# clean received response variable. 1 if received response, 0 if not
+d[ , Received_Response := ifelse(test = grepl('1',Received_Response,fixed=TRUE),1,0)]
+# d[, Received_Response := as.integer(Received_Response == 1)]
+
+d[, Received_Response := as.integer(ifelse(Received_Response=='1',1,0))]
+
+head(d,50)
+
+```
+
+
+```{r}
+# check for covariate balance by allegiance
+d[, .N, by = .(region)]
+
+# check for covariate balance by allegiance & gender
+d[, .N, by = .(region, gender)]
+
+# check for covariate balance by assignment
+d[, .N, by = .(state)]
+
+```
+
+```{r}
+
+model_race <- d[, lm(Received_Response ~ race)]
+
+model_race$vcovHC_ = vcovHC(model_race)
+
+coeftest(model_race,vcov. = model_race$vcovHC_)
+
+```
+
+
+```{r}
+d[ ,.(response_rate = mean(Received_Response), response_counts=sum(Received_Response),
+      total_requests=.N),keyby = .(race)]
+```
+
+```{r}
+
+felm_rses <- function(mod) { 
+    ## convienience function to pull robust standard errors 
+    ## from a felm object for reporting 
+    mod$STATS$Received_Response$rse
+}
+
+rses <- function(mod) {
+    ## convienience function to pull robust standard errors
+    ## for reporting. 
+    sqrt(diag(vcovHC(mod)))
+}
+
+# estimate race effect with blocked fixed effects
+model_race_blocking <- d[ , felm(Received_Response ~ 1 + race | region)]
+
+summary(model_race_blocking)
+
+```
+
+
+```{r}
+
+# estimate test for HTE with race and allegiance
+model_race_hte <- d[, lm(Received_Response ~ race*region)]
+
+model_race_hte$vcovHC_ = vcovHC(model_race_hte)
+
+coeftest(model_race_hte,vcov. = model_race_hte$vcovHC_)
+```
+
+```{r}
+d[ ,.(response_rate = mean(Received_Response), response_counts=sum(Received_Response),
+      total_requests=.N),keyby = .(race, region)]
+```
+
+
+```{r fig.width=12, fig.height=4}
+
+summary_race <- d[, .(
+  response_rate = mean(Received_Response),
+  response_counts = sum(Received_Response),
+  total_requests = .N
+), keyby = .(race)]
+
+summary_race_alleg <- d[, .(
+  response_rate = mean(Received_Response),
+  response_counts = sum(Received_Response),
+  total_requests = .N
+), keyby = .(race, region)]
+
+p1 <- ggplot(summary_race, aes(x = race, y = response_rate, fill = race)) +
+  geom_col() +
+  labs(
+    title = "Response Rate by Race",
+    x = "Race",
+    y = "Response Rate"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "none")
+
+p2 <- ggplot(summary_race_alleg, aes(x = race, y = response_rate, fill = region)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Response Rate by Race and Region",
+    x = "Race",
+    y = "Response Rate",
+    fill = "Region"
+  ) +
+  theme_minimal(base_size = 10)
+
+
+
+p1 + p2
+
+
+```
+
+
+```{r}
+# F test including covariates
+anova(model_race, model_race_hte,test='F')
+
+```
+
+```{r}
+# race stargazer table
+stargazer(
+  model_race,model_race_blocking,model_race_hte,
+  type='latex',
+  se=list(rses(model_race),felm_rses(model_race_blocking),rses(model_race_hte)),
+  column.labels = c('Race Main Effects',
+                    'Race Main Effects | Block',
+                    'Race HTE'),
+  dep.var.labels = c('Response Rate'),
+  model.names = FALSE
+)
+```
+
+The coefficients here are differences from the omitted category.
+Interaction coefficient: how the effect of one variable changes with a one-unit change in the other.
+
+The interpretation of model_hte_fs is that the effect of being black compared to white is 50 percentage points higher in the confederacy than the union. This is interesting insight because even though black senders in the confederacy had a lower response rate than white senders in the union, we can see this effect makes up for that race gap difference when moving from the union to the confederacy. Holding race and gender constant, the effect of being in the confederacy compared to the union decreases the probability of response by 43 percentage points.
+
+```{r}
+# gender main effect
+model_gender <- d[, lm(Received_Response ~ gender)]
+
+model_gender$vcovHC_ = vcovHC(model_gender)
+
+coeftest(model_gender,vcov. = model_gender$vcovHC_)
+
+```
+
+```{r}
+d[ ,.(response_rate = mean(Received_Response), response_counts=sum(Received_Response),
+      total_requests=.N),keyby = .(gender)]
+```
+
+```{r}
+# gender main effect with block fixed effects
+model_gender_blocking <- d[ , felm(Received_Response ~ 1 + gender | region)]
+
+summary(model_gender_blocking)
+```
+
+```{r}
+# test for HTE with gender and block
+model_gender_hte <- d[, lm(Received_Response ~ gender*region)]
+
+model_gender_hte$vcovHC_ = vcovHC(model_gender_hte)
+
+coeftest(model_gender_hte,vcov. = model_gender_hte$vcovHC_)
+```
+
+
+```{r}
+d[ ,.(response_rate = mean(Received_Response), response_counts=sum(Received_Response),
+      total_requests=.N),keyby = .(gender,region)]
+```
+
+```{r fig.width=12, fig.height=4}
+summary_gender <- d[, .(
+  response_rate = mean(Received_Response),
+  response_counts = sum(Received_Response),
+  total_requests = .N
+), keyby = .(gender)]
+
+summary_gender_alleg <- d[, .(
+  response_rate = mean(Received_Response),
+  response_counts = sum(Received_Response),
+  total_requests = .N
+), keyby = .(gender, region)]
+
+p1_gender <- ggplot(summary_gender, aes(x = gender, y = response_rate, fill = gender)) +
+  geom_col() +
+  labs(
+    title = "Response Rate by Gender",
+    x = "Gender",
+    y = "Response Rate"
+  ) +
+  theme_minimal(base_size = 10) +
+  theme(legend.position = "none")
+
+p2_gender <- ggplot(summary_gender_alleg, aes(x = gender, y = response_rate, fill = region)) +
+  geom_col(position = "dodge") +
+  labs(
+    title = "Response Rate by Gender and Region",
+    x = "Gender",
+    y = "Response Rate",
+    fill = "Region"
+  ) +
+  theme_minimal(base_size = 10)
+
+p1_gender + p2_gender + plot_layout(widths = c(1, 2))
+
+
+```
+
+
+```{r}
+anova(model_gender, model_gender_hte,test='F')
+```
+
+```{r}
+# gender stargazer table
+stargazer(
+  model_gender,model_gender_blocking,model_gender_hte,
+  type='latex',
+  se=list(rses(model_gender),felm_rses(model_gender_blocking),rses(model_gender_hte)),
+  dep.var.labels = c('Response Rate'),
+  column.labels = c('Gender Main Effects',
+                    'Gender Main Effects | Block',
+                    'Gender HTE'),
+  model.names = FALSE
+)
+```
+
+
+```{r}
+# fully saturated model
+model_hte <- d[, lm(Received_Response ~ race*gender*region)]
+
+model_hte$vcovHC_ = vcovHC(model_hte)
+
+coeftest(model_hte,vcov. = model_hte$vcovHC_)
+
+```
+
+```{r}
+
+# Add readable labels
+d[, race := factor(race, levels = c(0,1), labels = c("White", "Black"))]
+d[, gender := factor(gender, levels = c(0,1), labels = c("Male", "Female"))]
+d[, region := factor(region, levels = c(0,1), labels = c("Union", "Confederacy"))]
+
+
+d[ ,.(response_rate = mean(Received_Response), response_counts=sum(Received_Response),
+      total_requests=.N),keyby = .(gender,race,region)]
+```
+
+
+```{r}
+
+m1 <- model_race
+m2 <- model_race_blocking
+m3 <- model_race_hte
+m4 <- model_gender
+m5 <- model_gender_blocking
+m6 <- model_gender_hte
+m7 <- model_hte
+
+stargazer(
+  m1,m2,m3,m4,m5,m6,m7,
+  type='latex',
+  column.labels = c('Race Main Effects',
+                    'Race | Block',
+                    'Race HTE',
+                    'Gender',
+                    'Gender | Block',
+                    'Gender HTE',
+                    'Fully Saturated HTE'),
+  se=list( rses(m1), felm_rses(m2),rses(m3), rses(m4), felm_rses(m5),rses(m6), rses(m7)),
+  dep.var.labels = c('Response Rate'),
+  model.names = FALSE
+)
+```
+
